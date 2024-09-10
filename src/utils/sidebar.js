@@ -1,7 +1,8 @@
 import Analitika from '../assets/icons/sidebar/analitika.svg?react'
 import Lid from '../assets/icons/sidebar/lidlar.svg?react'
 import Students from '../assets/icons/sidebar/talaba.svg?react'
-import Groups from '../assets/icons/sidebar/gutuhlar.svg?react'
+import Finance from '../assets/icons/sidebar/moliya.svg?react'
+import Groups from '../assets/icons/sidebar/guruhlar.svg?react'
 import Course from '../assets/icons/sidebar/kurslar.svg?react'
 import HR from '../assets/icons/sidebar/hr.svg?react'
 import Settings from '../assets/icons/sidebar/settings.svg?react'
@@ -21,7 +22,7 @@ const sidebar = [
   {
     id: 2,
     title: "Lidlar", //buyurtma
-    path: '/lidlar',
+    path: '/lids',
     isPrivate: true,
     icon: Lid,
     element: Generics,
@@ -30,7 +31,7 @@ const sidebar = [
       {
         id: `2-1`,
         title: "Barcha Lidlar",
-        path: "/lidlar/all-lids",
+        path: "/lids/all-lids",
         isPrivate: true,
         element: Generics,
         role: ["admin", "manager"],
@@ -38,7 +39,7 @@ const sidebar = [
       {
         id: `2-2`,
         title: "Birinchi Dars",
-        path: "/lidlar/first-class",
+        path: "/lids/first-class",
         isPrivate: true,
         element: Generics,
         role: ["admin", "manager"],
@@ -46,7 +47,7 @@ const sidebar = [
       {
         id: `2-3`,
         title: "Yangi Talabalar",
-        path: '/lidlar/new-students',
+        path: '/lids/new-students',
         isPrivate: true,
         element: Generics,
         role: ["admin", "manager"],
