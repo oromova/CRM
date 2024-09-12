@@ -151,7 +151,7 @@ const sidebar = [
   },
   {
     id: 6,
-    title: "kurslar",
+    title: "Kurslar",
     path: "/kurslar",
     isPrivate: true,
     icon: Course,
@@ -234,14 +234,6 @@ const sidebar = [
         path: "/sozlamalar/talaba",
         isPrivate: true,
         element: Generics, 
-        role: ["admin", "manager"],
-      },
-      {
-        id: `8 - 4`,
-        title: "Talaba",
-        path: "/sozlamalar/talaba",
-        isPrivate: true,
-        element: Generics,
         role: ["admin", "manager"],
       },
     ],
