@@ -97,6 +97,7 @@ const Menu = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const MenuItem = styled(NavLink)`
   display: flex;
   align-items: center;
@@ -105,26 +106,31 @@ const MenuItem = styled(NavLink)`
   &:hover {
     cursor: pointer;
     background-color: rgb(248, 250, 252, 1);
-    color: var(--activeColor);
-    & path {
-      fill: var(--activeColor);
     }
-  }
+  background-color: ${({active}) => active === 'true' && `rgb(248, 250, 252, 1)`};
+  color: ${({active}) => active === 'true' ? 
+  `var(--activeColor)`:`var(--primaryColor)`};
 `;
 
 MenuItem.Title = styled.div`
   display: flex;
+  align-items: center;
   flex: 1;
   size: 14px;
   font-weight: 500;
   line-height: 20px;
   padding: 12px 0 12px 24px;
-  color: var(--primaryColor);
   .icon {
     margin-right: 16px;
   }
   &:hover {
     color: var(--activeColor);
+    & path { 
+      fill: var(--activeColor);
+    }
+  }
+  & path {
+    fill: ${({active}) => active === 'true' && "var(--activeColor)"};
   }
 `;
 
@@ -132,7 +138,7 @@ const Arrow = styled(arrow)`
   display: flex;
   align-items: center;
   margin-left: auto;
-  transform: ${({active}) => active && `rotate(90deg)`};
+  transform: ${({active}) => active === 'true' && `rotate(90deg)`};
   transition: all 0.1s;
 `
 
