@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Arrow, Body, ChildWrapper, Container, Logo, LogOut, Menu, MenuItem, Side, Wrapper } from './style';
+import { Arrow, Body, ChildWrapper, Container, ExitIcon, Logo, LogOut, Menu, MenuItem, Side, Wrapper } from './style';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar';
 import { Profile } from './profile';
@@ -17,7 +17,8 @@ export const Sidebar = () => {
     navigate("/");
   };
 
-  const onClickParent = (id) => {
+  const onClickParent = (id, children ) => {
+    if(!children) navigate(path)
     if (open.includes(id)) {
       let data = open.filter((val) => val !== id);
       setOpen(data);
@@ -39,7 +40,10 @@ export const Sidebar = () => {
             const { icon: Icon } = parent;
             return (
               <>
-                <MenuItem key={parent.id} onClick={() => onClickParent(parent.id)}>
+                <MenuItem
+                  key={parent.id}
+                  onClick={() => onClickParent(parent.id)}
+                  to={parent.path }>
                   <MenuItem.Title>
                     <Icon className="icon" />
                     {parent.title}
@@ -50,7 +54,7 @@ export const Sidebar = () => {
                 <ChildWrapper active={active}>
                   {parent?.children?.map((child) => {
                     return (
-                      <MenuItem key={child?.id}>
+                      <MenuItem key={child?.id} to={child.path}>
                         <MenuItem.Title>
                           {child?.title}
                         </MenuItem.Title>
@@ -65,7 +69,7 @@ export const Sidebar = () => {
           )}
         </Menu>
 
-        <LogOut onClick={onLogOut}>Chiqish</LogOut>
+        <LogOut onClick={onLogOut}> <ExitIcon />Chiqish</LogOut>
       </Side>
       <Body>
         <Navbar />

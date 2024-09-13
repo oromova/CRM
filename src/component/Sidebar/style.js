@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import arrow from "../../assets/icons/sidebar/arrowRight.svg?react";
-
+import exit from "../../assets/icons/sidebar/edit.svg?react"
+import { NavLink } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -45,6 +46,7 @@ const Logo = styled.div`
 
 const LogOut = styled(Logo)`
   display: flex;
+  align-items: center;
   margin-top: auto;
   position: sticky;
   bottom: 0;
@@ -95,10 +97,11 @@ const Menu = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const MenuItem = styled.div`
+const MenuItem = styled(NavLink)`
   display: flex;
   align-items: center;
   padding-right: 24px;
+  text-decoration: none;
   &:hover {
     cursor: pointer;
     background-color: rgb(248, 250, 252, 1);
@@ -139,6 +142,10 @@ const ChildWrapper = styled.div`
   overflow: hidden;
 `
 
+const ExitIcon = styled(exit)`
+  margin-right: 16px;
+`
+
 export {
   Container,
   Side,
@@ -151,5 +158,5 @@ export {
   MenuItem,
   Arrow,
   ChildWrapper,
-
+  ExitIcon,
 };
