@@ -7,13 +7,14 @@ import sidebar from '../../utils/sidebar';
 
 export const Sidebar = () => {
   const [open, setOpen] = useState([]);
+  const [active, setActive] = useState('')
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    const path = JSON.parse(localStorage.getItem('open'))
-    setOpen(path || [])
+    const path = JSON.parse(localStorage.getItem('open'));
+    setOpen(path || []);
   }, []);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ export const Sidebar = () => {
   };
 
   const onClickParent = ({ id, children, path }, e) => {
+    if (!children) navigate(path)
     if (open?.includes(id)) {
       let data = open.filter((val) => val !== id);
       localStorage.setItem('open', JSON.stringify(data));
@@ -51,43 +53,41 @@ export const Sidebar = () => {
           {sidebar.map((parent) => {
             const active = open.includes(parent.id);
             const { icon: Icon } = parent;
-            const activePath = location.pathname?.includes(parent.path);
-
+            const activePath = location.pathname?.includes(parent.path)
             return (
-              <React.Fragment  key={parent.id}>
+              <>
                 <MenuItem
+                  key={parent.id}
                   onClick={(e) => onClickParent(parent, e)}
-                  active={activePath.toString()}
+                  active={activePath}
                 >
-                  <MenuItem.Title active={activePath.toString()}>
-                    <Icon className="icon" />
-                    {parent.title}
+                  <MenuItem.Title active={activePath}>
+                    <Icon className="icon" /> {parent.title}
                   </MenuItem.Title>
-                  {parent?.children?.length && < Arrow active={active.toString()} /> 
-                  }
+                  {parent?.children?.length && <Arrow active={active} />}
                 </MenuItem>
-
-                <ChildWrapper active={active.toString()}>
+                <ChildWrapper active={active}>
                   {parent?.children?.map((child) => {
                     return (
-                      <MenuItem
-                        key={child?.id}
-                        to={child.path}
-                        active={(location.pathname === child.path).toString()}
+                      <MenuItem 
+                      key={child?.id} 
+                      to={child.path}
+                      active={location.pathname === child.path}
                       >
-                        <MenuItem.Title> {child?.title} </MenuItem.Title>
+                        <MenuItem.Title>
+                          {child?.title}
+                        </MenuItem.Title>
                       </MenuItem>
                     );
                   })
                   }
                 </ChildWrapper>
-              </React.Fragment>
+              </>
             );
-          }
-          )}
+          })}
         </Menu>
 
-        <LogOut onClick={onLogOut}> 
+        <LogOut onClick={onLogOut}>
           <ExitIcon />Chiqish
         </LogOut>
       </Side>

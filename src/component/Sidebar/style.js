@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import arrow from "../../assets/icons/sidebar/arrowRight.svg?react";
-import exit from "../../assets/icons/sidebar/edit.svg?react"
+import exit from "../../assets/icons/sidebar/edit.svg?react";
 import { NavLink } from "react-router-dom";
 
 const Container = styled.div`
@@ -48,6 +48,7 @@ const LogOut = styled(Logo)`
   display: flex;
   align-items: center;
   margin-top: auto;
+  width: 100%;
   position: sticky;
   bottom: 0;
   border-top: 1px solid rgb(248, 250, 252, 1);
@@ -101,15 +102,16 @@ const Menu = styled.div`
 const MenuItem = styled(NavLink)`
   display: flex;
   align-items: center;
-  padding-right: 24px;
-  text-decoration: none;
   &:hover {
     cursor: pointer;
-    background-color: rgb(248, 250, 252, 1);
-    }
-  background-color: ${({active}) => active === 'true' && `rgb(248, 250, 252, 1)`};
-  color: ${({active}) => active === 'true' ? 
-  `var(--activeColor)`:`var(--primaryColor)`};
+    background-color: rgba(248, 250, 252, 1);
+  }
+  padding-right: 24px;
+  text-decoration: none;
+  background-color: ${({ active }) =>
+    active ? `rgba(248, 250, 252, 1)` : `inherit`};
+  color: ${({ active }) =>
+    active ? `var(--activeColor)` : `var(--primaryColor)`};
 `;
 
 MenuItem.Title = styled.div`
@@ -120,17 +122,18 @@ MenuItem.Title = styled.div`
   font-weight: 500;
   line-height: 20px;
   padding: 12px 0 12px 24px;
-  .icon {
-    margin-right: 16px;
-  }
+
   &:hover {
     color: var(--activeColor);
-    & path { 
+    & path {
       fill: var(--activeColor);
     }
   }
   & path {
-    fill: ${({active}) => active === 'true' && "var(--activeColor)"};
+    fill: ${({active}) => active && 'var(--activeColor)'};
+  }
+  .icon {
+    margin-right: 16px;
   }
 `;
 
@@ -138,19 +141,19 @@ const Arrow = styled(arrow)`
   display: flex;
   align-items: center;
   margin-left: auto;
-  transform: ${({active}) => active === 'true' && `rotate(90deg)`};
   transition: all 0.1s;
-`
+  transform: ${({ active }) => active && `rotate(90deg)`};
+`;
 
 const ChildWrapper = styled.div`
   margin-left: 35px;
-  height: ${({active}) => (active ? "auto" : "0px")};
+  height: ${({ active }) => (active ? "auto" : "0px")};
   overflow: hidden;
-`
+`;
 
 const ExitIcon = styled(exit)`
   margin-right: 16px;
-`
+`;
 
 export {
   Container,
