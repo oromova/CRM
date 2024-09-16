@@ -109,9 +109,9 @@ const MenuItem = styled(NavLink)`
   padding-right: 24px;
   text-decoration: none;
   background-color: ${({ active }) =>
-    active ? `rgba(248, 250, 252, 1)` : `inherit`};
+    active === "true" ? `rgba(248, 250, 252, 1)` : `inherit`};
   color: ${({ active }) =>
-    active ? `var(--activeColor)` : `var(--primaryColor)`};
+    active === "true" ? `var(--activeColor)` : `var(--primaryColor)`};
 `;
 
 MenuItem.Title = styled.div`
@@ -130,7 +130,7 @@ MenuItem.Title = styled.div`
     }
   }
   & path {
-    fill: ${({active}) => active && 'var(--activeColor)'};
+    fill: ${({active}) => active === "true"  && 'var(--activeColor)'};
   }
   .icon {
     margin-right: 16px;
@@ -142,12 +142,12 @@ const Arrow = styled(arrow)`
   align-items: center;
   margin-left: auto;
   transition: all 0.1s;
-  transform: ${({ active }) => active && `rotate(90deg)`};
+  transform: ${({ active }) => active === "true" && `rotate(90deg)`};
 `;
 
 const ChildWrapper = styled.div`
   margin-left: 35px;
-  height: ${({ active }) => (active ? "auto" : "0px")};
+  height: ${({ active }) => (active === "true" ? "auto" : "0px")};
   overflow: hidden;
 `;
 

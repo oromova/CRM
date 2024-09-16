@@ -25,7 +25,7 @@ export const Sidebar = () => {
   };
 
   const onLogOut = () => {
-    navigate("/");
+    navigate("/login");
   };
 
   const onClickParent = ({ id, children, path }, e) => {
@@ -54,25 +54,25 @@ export const Sidebar = () => {
             const active = open.includes(parent.id);
             const { icon: Icon } = parent;
             const activePath = location.pathname?.includes(parent.path)
-            return (
-              <>
+
+            return !parent.hidden ? (
+              <React.Fragment key={parent.id}>
                 <MenuItem
-                  key={parent.id}
                   onClick={(e) => onClickParent(parent, e)}
-                  active={activePath}
+                  active={activePath.toString()}
                 >
-                  <MenuItem.Title active={activePath}>
+                  <MenuItem.Title active={activePath.toString()}>
                     <Icon className="icon" /> {parent.title}
                   </MenuItem.Title>
-                  {parent?.children?.length && <Arrow active={active} />}
+                  {parent?.children?.length && <Arrow active={active.toString()} />}
                 </MenuItem>
-                <ChildWrapper active={active}>
+                <ChildWrapper active={active.toString()}>
                   {parent?.children?.map((child) => {
                     return (
                       <MenuItem 
                       key={child?.id} 
                       to={child.path}
-                      active={location.pathname === child.path}
+                      active={(location.pathname === child.path).toString()}
                       >
                         <MenuItem.Title>
                           {child?.title}
@@ -82,8 +82,8 @@ export const Sidebar = () => {
                   })
                   }
                 </ChildWrapper>
-              </>
-            );
+              </React.Fragment>
+            ) : null ;
           })}
         </Menu>
 
