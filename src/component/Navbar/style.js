@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import search from '../../assets/icons/navbar/search.svg?react'
+import search from "../../assets/icons/navbar/search.svg?react";
 
 const Container = styled.div`
   display: flex;
@@ -33,7 +33,7 @@ const Input = styled.input`
   border-radius: 8px;
   line-height: 20px;
   color: rgb(187, 195, 205);
-  &::placeholder{
+  &::placeholder {
     color: rgb(187, 195, 205);
     font-weight: 500;
     font-size: 14px;
@@ -43,27 +43,21 @@ const Input = styled.input`
 
 const SearchIcon = styled(search)`
   margin: 0 16px;
-`
+`;
 
 // right navbar / time wrapper
 const Section = styled.div`
   display: flex;
-`
+  align-items: center;
+  gap: 16px;
+`;
 
 const Timer = styled.div`
-   &::placeholder{
-    color: rgb(187, 195, 205);
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
-  }
-`
+  color: ${({ status }) =>
+  status ? "rgb(187, 195, 205)" : "var(--primaryColor)"};
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+`;
 
-
-export { 
-  Container, 
-  InputWrapper,
-  Input, 
-  SearchIcon,
-  Section
-};
+export { Container, InputWrapper, Input, SearchIcon, Section, Timer };
