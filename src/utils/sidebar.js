@@ -8,6 +8,7 @@ import HR from '../assets/icons/sidebar/hr.svg?react'
 import Settings from '../assets/icons/sidebar/settings.svg?react'
 // Components
 import { Generics } from "../view/Generics"
+import { AnalitikaView } from '../view/AnalitikaView';
 
 const sidebar = [
   {
@@ -16,7 +17,7 @@ const sidebar = [
     path: '/analitika',
     icon: Analitika,
     isPrivate: true,
-    element: Generics,
+    element: AnalitikaView,
     role: ["admin", 'manager'],
   },
   {

@@ -8,10 +8,6 @@ import Input from '../Generics/Input';
 export const Navbar = () => {
   return (
     <Container>
-      {/* <InputWrapper>
-        <SearchIcon />
-        <Input placeholder="Search"/>
-      </InputWrapper> */}
       <Input 
       width={500} 
       height={40} 

@@ -25,6 +25,9 @@ const Side = styled.div`
 
 const Body = styled.div`
   flex: 1;
+  overflow-y: scroll;
+  /* overflow: hidden; */
+  height: 100vh;
 `;
 
 const Wrapper = styled.div`
@@ -34,6 +37,8 @@ const Wrapper = styled.div`
 `;
 
 const Logo = styled.div`
+  position: sticky;
+  top: 0;
   font-weight: 600;
   size: 20px;
   line-height: 28px;
@@ -42,6 +47,7 @@ const Logo = styled.div`
   border-bottom: 1px solid rgb(248, 250, 252, 1);
   cursor: pointer;
   background-color: white;
+  z-index: 999;
 `;
 
 const LogOut = styled(Logo)`
@@ -130,7 +136,7 @@ MenuItem.Title = styled.div`
     }
   }
   & path {
-    fill: ${({active}) => active === "true"  && 'var(--activeColor)'};
+    fill: ${({ active }) => active === "true" && "var(--activeColor)"};
   }
   .icon {
     margin-right: 16px;
