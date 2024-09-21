@@ -1,7 +1,15 @@
 import React from 'react'
+import { Container, Input } from "./style";
 
-export const Navbar = () => {
-  return (
-    <div>Navbar</div>
+export const GenericInput = (props) => {
+  const {iconLeft, iconRight} = props;
+    return (
+    <Container {...props}>
+      {iconLeft && iconLeft}
+      <Input {...props}/>
+      {iconRight && iconRight}
+    </Container>
   )
 }
+
+export default GenericInput

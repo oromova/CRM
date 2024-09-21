@@ -1,23 +1,29 @@
-import React from 'react'
-import { Container, Input, InputWrapper, SearchIcon, Section } from './style';
+import React from 'react';
+import { Container, SearchIcon, Section } from './style';
 import Time from './Time';
 import GenericSelect from './Select';
 import DateTimepicker from './DateTimepicker';
+import Input from '../Generics/Input';
 
 export const Navbar = () => {
   return (
     <Container>
-      <InputWrapper>
+      {/* <InputWrapper>
         <SearchIcon />
         <Input placeholder="Search"/>
-      </InputWrapper>
+      </InputWrapper> */}
+      <Input 
+      width={500} 
+      height={40} 
+      borderRadius={8} 
+      iconLeft={<SearchIcon />} />
       <Section>
-        <Time/>
-        <DateTimepicker/>
-        <GenericSelect/>
+        <Time />
+        <DateTimepicker />
+        <GenericSelect />
       </Section>
     </Container>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
