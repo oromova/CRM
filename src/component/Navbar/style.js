@@ -60,4 +60,6 @@ const Timer = styled.div`
   line-height: 32px;
 `;
 
+
+
 export { Container, InputWrapper, Input, SearchIcon, Section, Timer };
