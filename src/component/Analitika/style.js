@@ -26,7 +26,9 @@ const getColor = (title) => {
   }
 };
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  padding: 24px;
+`;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -80,8 +82,18 @@ export const Plus = styled.div`
 export const Counter = styled(Title)`
   font-size: 40px;
 `;
+
 export const Arrow = styled(arrowUp)`
   width: 24px;
   height: 24px;
   margin-right: 13px;
+`;
+
+export const SubCard = styled(Card)`
+  padding-bottom: 24px;
+  border-radius: 8px;
+  border: 1px solid rgba(240, 240, 240, 1);
+  .subicon {
+    margin-right: 16px;
+  }
 `;

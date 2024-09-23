@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container, Card, Wrapper, Section, Plus, Counter, Arrow } from './style';
+import { Container, Card, Wrapper, Section, Plus, Counter, Arrow, SubCard } from './style';
 import Title from '../Generics/Title';
 import Subtitle from '../Generics/Subtitle';
-import { privateData } from '../../utils/analitics';
+import { media, privateData } from '../../utils/analitics';
 
 
 export const Analitika = () => {
@@ -39,9 +39,30 @@ export const Analitika = () => {
       </Wrapper>
       <Subtitle mt={24} mb={16}>Ijtimoiy tarmoqlar</Subtitle>
       <Wrapper>
-        <Card>1</Card>
-        <Card>1</Card>
-        <Card>1</Card>
+      {
+          media.map((value) => {
+            const { icon: Icon } = value;
+            return(
+              <SubCard key={value.id} gap={24} title={value.title}>
+                {/* TOP */}
+                <Section>
+                  <Subtitle>
+                    <Icon className="subicon"/> {value.title}
+                  </Subtitle> 
+                  <Plus title={value.title}/>
+                </Section>
+                 {/* BOTTOM */}
+                 <Section title={value.title}>
+                  <Title color={"#52C41A"}>
+                    <Arrow className="icon"/>22%
+                  </Title> 
+                  <Counter>{value.count}K</Counter>
+                  <Plus/>
+                </Section>
+              </SubCard>
+            )
+          })
+        }
       </Wrapper>
     </Container>
   );

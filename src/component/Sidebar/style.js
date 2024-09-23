@@ -33,6 +33,7 @@ const Body = styled.div`
 const Wrapper = styled.div`
   margin: 16px;
   background-color: white;
+  border-radius: 8px;
 `;
 
 const Logo = styled.div`
