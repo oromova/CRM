@@ -97,3 +97,17 @@ export const SubCard = styled(Card)`
     margin-right: 16px;
   }
 `;
+
+export const FooterWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  gap: 17px;
+`
+
+FooterWrapper.Email = styled.div`
+  flex: 2;
+`
+
+FooterWrapper.Moliya = styled.div`
+  flex: 1;
+`
