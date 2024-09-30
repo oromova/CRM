@@ -7,7 +7,7 @@ import sidebar from '../../utils/sidebar';
 
 export const Sidebar = () => {
   const [open, setOpen] = useState([]);
-  const [active, setActive] = useState('')
+  const [active, setActive] = useState('');
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,8 +28,8 @@ export const Sidebar = () => {
     navigate("/login");
   };
 
-  const onClickParent = ({ id, children, path }, e) => {
-    if (!children) navigate(path)
+  const onClickParent = ({ id, children, path, title}, e) => {
+    e.preventDefault();
     if (open?.includes(id)) {
       let data = open.filter((val) => val !== id);
       localStorage.setItem('open', JSON.stringify(data));
@@ -39,9 +39,13 @@ export const Sidebar = () => {
       setOpen([...open, id]);
     }
     if (!children) {
-      e.preventDefault();
-      navigate(path);
+      navigate(path, { state: {parent:title }});
     }
+  };
+
+  const onClickChild = (parent, child, path, e) => {
+    e.preventDefault()
+    navigate(path, {state: { parent, child }});
   };
 
   return (
@@ -53,7 +57,7 @@ export const Sidebar = () => {
           {sidebar.map((parent) => {
             const active = open.includes(parent.id);
             const { icon: Icon } = parent;
-            const activePath = location.pathname?.includes(parent.path)
+            const activePath = location.pathname?.includes(parent.path);
 
             return !parent.hidden ? (
               <React.Fragment key={parent.id}>
@@ -69,10 +73,11 @@ export const Sidebar = () => {
                 <ChildWrapper active={active.toString()}>
                   {parent?.children?.map((child) => {
                     return (
-                      <MenuItem 
-                      key={child?.id} 
-                      to={child.path}
-                      active={(location.pathname === child.path).toString()}
+                      <MenuItem
+                        key={child?.id}
+                        to={child.path}
+                        onClick={(e) => onClickChild(parent.title, child.title, child.path, e)}
+                        active={(location.pathname === child.path).toString()}
                       >
                         <MenuItem.Title>
                           {child?.title}
@@ -83,7 +88,7 @@ export const Sidebar = () => {
                   }
                 </ChildWrapper>
               </React.Fragment>
-            ) : null ;
+            ) : null;
           })}
         </Menu>
 

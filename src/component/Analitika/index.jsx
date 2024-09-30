@@ -76,12 +76,11 @@ export const Analitika = () => {
           <Subtitle mt={24} mb={16} count={12}>
             Email xabarlari
           </Subtitle>
-          <Email>
-            email
-          </Email>
+          <Email/>
         </FooterWrapper.Email>
+        {/* MOLIYA */}
         <FooterWrapper.Moliya>
-          <Subtitle mt={24} mb={16}>
+          <Subtitle mt={28} mb={16}>
             Moliya
           </Subtitle>
           <Moliya>

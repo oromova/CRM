@@ -33,7 +33,7 @@ export const Moliya = () => {
         </Subtitle>
         <ArrowIcon onClick={onClickForward} right />
       </Fragment>
-      <Fragment mt={16} mb={16}>
+      <Fragment mt={24} mb={16}>
         {date.week(weekCount).map((value) => {
           const ac = active == value.getDate();
           return (
@@ -53,7 +53,7 @@ export const Moliya = () => {
       <Subtitle size={14} color='#929FAF'>
         {date.date}-{date.month.full}, {date.year}
       </Subtitle>
-      <Subtitle size={32} mt={5} mb={24}>
+      <Subtitle size={36} mt={10} mb={24}>
         8 520 000
         <Subtitle size={24} ml={16} color="#52C41A">
           +22%
