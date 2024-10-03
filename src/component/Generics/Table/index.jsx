@@ -30,10 +30,8 @@ function EnhancedTableHead(props) {
           />
         </TableCell>
         {headCells.map((headCell) => (
-          <TableCell key={headCell.id}>
-            <TableSortLabel>
+          <TableCell key={headCell.id} sx={{color: "#929FAF", fontSize: "16px", cursor: "pointer"}}>
               {headCell.label}
-            </TableSortLabel>
           </TableCell>
         ))}
       </TableRow>
@@ -43,7 +41,7 @@ function EnhancedTableHead(props) {
 
 export default function GenericTable(props) {
   const [selected, setSelected] = React.useState([]);
-  const { headCells, rows } = props;
+  const { headCells, rows, open } = props;
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -73,9 +71,18 @@ export default function GenericTable(props) {
     setSelected(newSelected);
   };
  
-
   return (
     <Box sx={{ width: '100%' }}>
+      <Box sx={{ marginTop:"24px", height: open ? "64px" : 0, overflow: 'hidden' }}>
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableCell sx={{border: 0}}>Test</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </Box>
+        
       <Paper sx={{ width: '100%', mb: 2 }}>
         <TableContainer>
           <Table
@@ -112,10 +119,10 @@ export default function GenericTable(props) {
                         }}
                       />
                     </TableCell>
-                   {headCells.map((val) => 
-                    <TableCell align='left' key={val.id}>
-                      {row[val.id]}
-                    </TableCell>)}
+                    {headCells.map((val) => 
+                      <TableCell align='left' key={val.id} sx={{color: "#253E5F"}}>
+                        {row[val.id]}
+                      </TableCell>)}
                   </TableRow>
                 );
               })}
