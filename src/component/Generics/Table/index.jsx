@@ -7,9 +7,9 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
+import GenericSelect from '../Select';
 
 function EnhancedTableHead(props) {
   const { headCells, onSelectAllClick, numSelected, rowCount, } =
@@ -30,8 +30,8 @@ function EnhancedTableHead(props) {
           />
         </TableCell>
         {headCells.map((headCell) => (
-          <TableCell key={headCell.id} sx={{color: "#929FAF", fontSize: "16px", cursor: "pointer"}}>
-              {headCell.label}
+          <TableCell key={headCell.id} sx={{ color: "#929FAF", fontSize: "16px", cursor: "pointer" }}>
+            {headCell.label}
           </TableCell>
         ))}
       </TableRow>
@@ -70,14 +70,27 @@ export default function GenericTable(props) {
     }
     setSelected(newSelected);
   };
- 
+
+  const isSelected = () => selected.indexOf(id) !== -1;
+
+  const data1 = [
+    { value: 'uzbek', title: 'Uzbek' },
+    { value: 'russian', title: 'Russian' },
+    { value: 'english', title: 'English' }
+  ];
+
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ marginTop:"24px", height: open ? "64px" : 0, overflow: 'hidden' }}>
         <Table>
           <TableBody>
-            <TableRow>
-              <TableCell sx={{border: 0}}>Test</TableCell>
+            <TableRow sx={{ display: "flex", justifyContent: "space-between" }}>
+              <GenericSelect value='uzbek' data={data1} />
+              <GenericSelect value='english' data={data1} />
+              <GenericSelect value='russian' data={data1} />
+              <GenericSelect data={data1} />
+              <GenericSelect data={data1} />
+              <GenericSelect data={data1} />
             </TableRow>
           </TableBody>
         </Table>
@@ -135,7 +148,7 @@ export default function GenericTable(props) {
           </Table>
         </TableContainer>
       </Paper>
-    </Box>
+    </Box >
   );
 }
 
