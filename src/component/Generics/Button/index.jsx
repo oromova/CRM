@@ -16,7 +16,10 @@ export const GenericButton = (props) => {
             </Button.Import>
     case "save":
     case "primary":
-      return <Button.Primary {...props}>{children}</Button.Primary>
+      return <Button.Primary {...props}>
+              <Icons.Add/>
+              {children}
+              </Button.Primary>
     case "delete":
       return <Button.Delete {...props}>{children}</Button.Delete>
     case "add":
@@ -25,7 +28,7 @@ export const GenericButton = (props) => {
               {children}
               </Button.Add>;
     default:
-        <Button {...props}>{children}</Button>
+        return <Button {...props}>{children}</Button>
   }
 }
 

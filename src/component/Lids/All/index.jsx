@@ -66,12 +66,9 @@ export const AllLids = () => {
   return (
     <Container>
       <Breadcrumb>
-        <GenericButton type='import' onClick={() => setOpen(!open)}>Filter</GenericButton>
-        <GenericButton type='filter' onClick={() => setOpen(!open)}>Import</GenericButton>
+        <GenericButton type='import' onClick={() => setOpen(!open)}>Import</GenericButton>
+        <GenericButton type='filter' onClick={() => setOpen(!open)}>Filter</GenericButton>
         <GenericButton type='primary' onClick={() => setOpen(!open)}>Buyurtma berish</GenericButton>
-        <GenericButton type='save' onClick={() => setOpen(!open)}>Filter</GenericButton>
-        <GenericButton type='delete' onClick={() => setOpen(!open)}>O'chirish</GenericButton>
-        <GenericButton type='add' onClick={() => setOpen(!open)}>Filter</GenericButton>
       </Breadcrumb>
       <GenericTable open={open } headCells={headCells} rows={rows} />
     </Container>
