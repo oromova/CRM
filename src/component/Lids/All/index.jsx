@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import { GenericTable } from '../../Generics/Table';
-import { Container } from './style';
+import { Action, Container } from './style';
 import { Breadcrumb } from '../../Generics/BreadCrumb/index';
 import GenericButton from '../../Generics/Button';
+import GenericSelect from '../../Generics/Select';
 
 export const AllLids = () => {
   const [open, setOpen] = useState(false);
+  const onEdit = (e)=> {
+    e.stopPropagation()
+  }
+  const onMove = (e)=> {
+    e.stopPropagation()
+  }
+
   const headCells = [{
     id: "name",
     label: "O'quvchining ismi",
@@ -25,6 +33,16 @@ export const AllLids = () => {
   {
     id: "admin",
     label: "Moderator",
+  },
+  {
+    id: "action",
+    label: "",
+    render: (
+      <Action>
+        <Action.Edit onClick={onEdit} />
+        <Action.Move onClick={onMove}/>
+      </Action>
+    )
   },
   ];
 
@@ -63,6 +81,12 @@ export const AllLids = () => {
     },
   ];
 
+  const data1 = [
+    { value: 'uzbek', title: 'Uzbek' },
+    { value: 'russian', title: 'Russian' },
+    { value: 'english', title: 'English' }
+  ];
+
   return (
     <Container>
       <Breadcrumb>
@@ -70,7 +94,14 @@ export const AllLids = () => {
         <GenericButton type='filter' onClick={() => setOpen(!open)}>Filter</GenericButton>
         <GenericButton type='primary' onClick={() => setOpen(!open)}>Buyurtma berish</GenericButton>
       </Breadcrumb>
-      <GenericTable open={open } headCells={headCells} rows={rows} />
+      <GenericTable open={open} headCells={headCells} rows={rows}>
+        <GenericSelect value='uzbek' data={data1} />
+        <GenericSelect value='english' data={data1} />
+        <GenericSelect value='russian' data={data1} />
+        <GenericSelect data={data1} />
+        <GenericSelect data={data1} />
+        <GenericSelect data={data1} />
+      </GenericTable>
     </Container>
   );
 };

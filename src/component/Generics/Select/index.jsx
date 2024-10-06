@@ -16,13 +16,17 @@ export const GenericSelect = (props) => {
       size='small'
     >
       <Select
-        sx={{ color: '#929FAF', border: '#929FAF', }}
+        sx={{ color: '#929FAF', border: '#929FAF', fontSize: "14px" }}
         value={defaultVal || "Select"}
         onChange={handleChange}
       >
         {data?.map((item) => {
           return (
-            <MenuItem sx={{ color: '#929FAF' }} key={item.value} value={item?.value}>
+            <MenuItem 
+              sx={{ color: '#929FAF', fontSize: "14px" }} 
+              key={item.value} 
+              value={item?.value}
+              >
               {item?.title}
             </MenuItem>
           );

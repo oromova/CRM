@@ -9,7 +9,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
-import GenericSelect from '../Select';
 
 function EnhancedTableHead(props) {
   const { headCells, onSelectAllClick, numSelected, rowCount, } =
@@ -71,13 +70,7 @@ export default function GenericTable(props) {
     setSelected(newSelected);
   };
 
-  const isSelected = () => selected.indexOf(id) !== -1;
-
-  const data1 = [
-    { value: 'uzbek', title: 'Uzbek' },
-    { value: 'russian', title: 'Russian' },
-    { value: 'english', title: 'English' }
-  ];
+  // const isSelected = () => selected.indexOf(id) !== -1;
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -85,12 +78,7 @@ export default function GenericTable(props) {
         <Table>
           <TableBody>
             <TableRow sx={{ display: "flex", justifyContent: "space-between" }}>
-              <GenericSelect value='uzbek' data={data1} />
-              <GenericSelect value='english' data={data1} />
-              <GenericSelect value='russian' data={data1} />
-              <GenericSelect data={data1} />
-              <GenericSelect data={data1} />
-              <GenericSelect data={data1} />
+              {props?.children}
             </TableRow>
           </TableBody>
         </Table>
@@ -132,10 +120,17 @@ export default function GenericTable(props) {
                         }}
                       />
                     </TableCell>
+
                     {headCells.map((val) => 
-                      <TableCell align='left' key={val.id} sx={{color: "#253E5F"}}>
-                        {row[val.id]}
-                      </TableCell>)}
+                      <TableCell 
+                        align='left' 
+                        key={val.id} 
+                        sx={{color: "#253E5F"}}>
+                        {
+                          val.render ? val.render : row[val.id]
+                        }
+                      </TableCell>
+                    )}
                   </TableRow>
                 );
               })}
