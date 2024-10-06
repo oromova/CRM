@@ -4,15 +4,17 @@ import { Action, Container } from './style';
 import { Breadcrumb } from '../../Generics/BreadCrumb/index';
 import GenericButton from '../../Generics/Button';
 import GenericSelect from '../../Generics/Select';
+import { Modal } from '../../Generics/Modal';
 
 export const AllLids = () => {
   const [open, setOpen] = useState(false);
-  const onEdit = (e)=> {
-    e.stopPropagation()
-  }
-  const onMove = (e)=> {
-    e.stopPropagation()
-  }
+  const [modalOpen, setModal] = useState(false);
+  const onEdit = (e) => {
+    e.stopPropagation();
+  };
+  const onMove = (e) => {
+    e.stopPropagation();
+  };
 
   const headCells = [{
     id: "name",
@@ -40,7 +42,7 @@ export const AllLids = () => {
     render: (
       <Action>
         <Action.Edit onClick={onEdit} />
-        <Action.Move onClick={onMove}/>
+        <Action.Move onClick={onMove} />
       </Action>
     )
   },
@@ -89,10 +91,21 @@ export const AllLids = () => {
 
   return (
     <Container>
+      <Modal open={modalOpen}>
+      <GenericButton type='primary' >
+        Talaba qo'shish
+      </GenericButton>
+      </Modal>
       <Breadcrumb>
-        <GenericButton type='import' onClick={() => setOpen(!open)}>Import</GenericButton>
-        <GenericButton type='filter' onClick={() => setOpen(!open)}>Filter</GenericButton>
-        <GenericButton type='primary' onClick={() => setOpen(!open)}>Buyurtma berish</GenericButton>
+        <GenericButton type='import' onClick={() => setOpen(!open)}>
+          Import
+        </GenericButton>
+        <GenericButton type='filter' onClick={() => setOpen(!open)}>
+          Filter
+        </GenericButton>
+        <GenericButton type='primary' onClick={() => setModal(!modalOpen)}>
+          Lid qo'shish
+        </GenericButton>
       </Breadcrumb>
       <GenericTable open={open} headCells={headCells} rows={rows}>
         <GenericSelect value='uzbek' data={data1} />
