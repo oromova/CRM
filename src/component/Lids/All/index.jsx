@@ -5,6 +5,7 @@ import { Breadcrumb } from '../../Generics/BreadCrumb/index';
 import GenericButton from '../../Generics/Button';
 import GenericSelect from '../../Generics/Select';
 import { Modal } from '../../Generics/Modal';
+import AllLidsModal from './modal';
 
 export const AllLids = () => {
   const [open, setOpen] = useState(false);
@@ -89,13 +90,17 @@ export const AllLids = () => {
     { value: 'english', title: 'English' }
   ];
 
+  const onToggleModal = () => {
+    setModal(!modalOpen);
+  };
+
+  const onSave = () => {
+
+  };
+
   return (
     <Container>
-      <Modal open={modalOpen}>
-      <GenericButton type='primary' >
-        Talaba qo'shish
-      </GenericButton>
-      </Modal>
+      <AllLidsModal open={modalOpen} onClose={onToggleModal} onSave={onSave}/>
       <Breadcrumb>
         <GenericButton type='import' onClick={() => setOpen(!open)}>
           Import
@@ -103,7 +108,7 @@ export const AllLids = () => {
         <GenericButton type='filter' onClick={() => setOpen(!open)}>
           Filter
         </GenericButton>
-        <GenericButton type='primary' onClick={() => setModal(!modalOpen)}>
+        <GenericButton type='primary' onClick={onToggleModal}>
           Lid qo'shish
         </GenericButton>
       </Breadcrumb>
@@ -115,6 +120,6 @@ export const AllLids = () => {
         <GenericSelect data={data1} />
         <GenericSelect data={data1} />
       </GenericTable>
-    </Container>
+    </Container >
   );
 };

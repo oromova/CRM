@@ -57,7 +57,7 @@ Button.Import = styled(Button)`
 Button.Delete = styled(Button)`
   border-color: #ffa39e;
   color: #f5222d;
-  border: 0;
+  border: 1px solid;
 `;
 
 Button.Add = styled(Button)`
