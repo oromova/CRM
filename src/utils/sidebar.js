@@ -9,6 +9,7 @@ import Settings from '../assets/icons/sidebar/settings.svg?react'
 // Components
 import { Generics } from "../view/Generics"
 import { AnalitikaView } from '../view/AnalitikaView';
+import FirstClassView from '../view/Lids/First'
 import AllLidsView from '../view/Lids/All';
 
 const sidebar = [
@@ -43,7 +44,7 @@ const sidebar = [
         title: "Birinchi Dars",
         path: "/lids/first-class",
         isPrivate: true,
-        element: Generics,
+        element: FirstClassView,
         role: ["admin", "manager"],
       },
       {

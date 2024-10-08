@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 
 export const GenericSelect = (props) => {
   const { data, width } = props;
+
   const [defaultVal, setDefaultVal] = useState(
-    props?.value || data && data[0]?.value);
+    props?.value || (data && data[0]?.value)
+  );
 
   const handleChange = (event) => {
     setDefaultVal(event.target.value);

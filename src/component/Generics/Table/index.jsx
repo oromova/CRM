@@ -127,7 +127,7 @@ export default function GenericTable(props) {
                         key={val.id} 
                         sx={{color: "#253E5F"}}>
                         {
-                          val.render ? val.render : row[val.id]
+                          val.render ? val?.render(row) : row[val.id]
                         }
                       </TableCell>
                     )}

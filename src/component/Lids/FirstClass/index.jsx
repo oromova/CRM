@@ -6,7 +6,7 @@ import GenericButton from '../../Generics/Button';
 import GenericSelect from '../../Generics/Select';
 import AllLidsModal from './modal';
 
-export const AllLids = () => {
+export const FirstClass = () => {
   const [open, setOpen] = useState(false);
   const [modalOpen, setModal] = useState(false);
   const [modalProps, setModalProps] = useState({});
@@ -110,14 +110,8 @@ export const AllLids = () => {
         <GenericButton type='filter' onClick={() => setOpen(!open)}>
           Filter
         </GenericButton>
-        <GenericButton type='primary' onClick={onToggleModal}>
-          Lid qo'shish
-        </GenericButton>
       </Breadcrumb>
       <GenericTable open={open} headCells={headCells} rows={rows}>
-        <GenericSelect value='uzbek' data={data1} />
-        <GenericSelect value='english' data={data1} />
-        <GenericSelect value='russian' data={data1} />
         <GenericSelect data={data1} />
         <GenericSelect data={data1} />
         <GenericSelect data={data1} />
@@ -125,3 +119,5 @@ export const AllLids = () => {
     </Container >
   );
 };
+
+export default FirstClass;
