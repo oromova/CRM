@@ -10,6 +10,7 @@ import Settings from '../assets/icons/sidebar/settings.svg?react'
 import { Generics } from "../view/Generics"
 import { AnalitikaView } from '../view/AnalitikaView';
 import FirstClassView from '../view/Lids/First'
+import NewStudentView from '../view/Lids/New'
 import AllLidsView from '../view/Lids/All';
 
 const sidebar = [
@@ -52,7 +53,7 @@ const sidebar = [
         title: "Yangi Talabalar",
         path: '/lids/new-students',
         isPrivate: true,
-        element: Generics,
+        element: NewStudentView,
         role: ["admin", "manager"],
       },
     ],
@@ -64,6 +65,7 @@ const sidebar = [
     isPrivate: true,
     icon: Finance,
     element: Generics,
+    hidden: true,
     role: ["admin"],
   },
   {

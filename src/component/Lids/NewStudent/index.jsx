@@ -9,7 +9,7 @@ import moment from 'moment';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 
-export const FirstClass = () => {
+export const NewStudent = () => {
   const [open, setOpen] = useState(false);
   const [modalOpen, setModal] = useState(false);
   const [modalProps, setModalProps] = useState({});
@@ -17,11 +17,13 @@ export const FirstClass = () => {
   const onEdit = (e, res) => {
     e.stopPropagation();
     setModal(!modalOpen);
+    setModal(!modalOpen);
     setModalProps(res);
   };
 
   const headCells = [
     { id: "name", label: "O'quvchining ismi", },
+    { id: "phone", label: "Telefon raqam", },
     { id: "group", label: "Guruh / Fan", },
     { id: "date", label: "Dars kuni va vaqti", },
     { id: "addedDate", label: "Qo'shilgan sana", },
@@ -46,7 +48,8 @@ export const FirstClass = () => {
       days: "toq kunlari",
       addedDate: "21.05.2024",
       admin: 'Webbrain admin',
-      level: "Beginner"
+      level: "Beginner",
+      phone: '+998 20 007 1226'
     },
     {
       id: 2,
@@ -57,6 +60,7 @@ export const FirstClass = () => {
       addedDate: "21.05.2024",
       admin: 'Webbrain admin',
       level: "Junior",
+      phone: '+998 20 007 1226'
     },
     {
       id: 3,
@@ -67,6 +71,7 @@ export const FirstClass = () => {
       addedDate: "21.05.2024",
       admin: 'Webbrain admin',
       level: "Junior",
+      phone: '+998 20 007 1226'
     },
     {
       id: 4,
@@ -77,6 +82,7 @@ export const FirstClass = () => {
       addedDate: "21.05.2024",
       admin: 'Webbrain admin',
       level: "Junior",
+      phone: '+998 20 007 1226'
     },
   ];
 
@@ -108,6 +114,9 @@ export const FirstClass = () => {
         <GenericButton type='filter' onClick={() => setOpen(!open)}>
           Filter
         </GenericButton>
+        <GenericButton type='add' onClick={onToggleModal}>
+          Talaba qo'shish
+        </GenericButton>
       </Breadcrumb>
       <GenericTable open={open} headCells={headCells} rows={rows}>
       <LocalizationProvider dateAdapter={AdapterMoment}>
@@ -124,4 +133,4 @@ export const FirstClass = () => {
   );
 };
 
-export default FirstClass;
+export default NewStudent;

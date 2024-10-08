@@ -77,7 +77,7 @@ export default function GenericTable(props) {
       <Box sx={{ marginTop:"24px", height: open ? "64px" : 0, overflow: 'hidden' }}>
         <Table>
           <TableBody>
-            <TableRow sx={{ display: "flex", justifyContent: "space-between" }}>
+            <TableRow sx={{ display: "flex", gap: 5 }}>
               {props?.children}
             </TableRow>
           </TableBody>
