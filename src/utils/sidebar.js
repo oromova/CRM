@@ -12,6 +12,9 @@ import { AnalitikaView } from '../view/AnalitikaView';
 import FirstClassView from '../view/Lids/First'
 import NewStudentView from '../view/Lids/New'
 import AllLidsView from '../view/Lids/All';
+import ArchiveStudentsView from '../view/Students/Archive'
+import ActiveStudentsView from '../view/Students/Active'
+import AllStudentsView  from '../view/Students/All'
 
 const sidebar = [
   {
@@ -82,23 +85,23 @@ const sidebar = [
         title: "Barcha talabalar",
         path: "/talabalar/all-talabalar",
         isPrivate: true,
-        element: Generics,
+        element: AllStudentsView,
         role: ["admin", "manager"],
       },
-      {
-        id: `4-2`,
-        title: "Davomat",
-        path: '/talabalar/davomat',
-        isPrivate: true,
-        element: Generics,
-        role: ["admin", "manager"],
-      },
+      // {
+      //   id: `4-2`,
+      //   title: "Davomat",
+      //   path: '/talabalar/davomat',
+      //   isPrivate: true,
+      //   element: Generics,
+      //   role: ["admin", "manager"],
+      // },
       {
         id: `4-3`,
         title: "Aktive",
         path: "/talabalar/active",
         isPrivate: true,
-        element: Generics,
+        element: ActiveStudentsView,
         role: ["admin", "manager"],
       },
       {
@@ -106,17 +109,17 @@ const sidebar = [
         title: "Arxiv",
         path: "/talabalar/archive",
         isPrivate: true,
-        element: Generics,
+        element: ArchiveStudentsView,
         role: ["admin", "manager"],
       },
-      {
-        id: `4-5`,
-        title: "Ota-onalar",
-        path: "/talabalar/parents",
-        isPrivate: true,
-        element: Generics,
-        role: ["admin", "manager"],
-      },
+      // {
+      //   id: `4-5`,
+      //   title: "Ota-onalar",
+      //   path: "/talabalar/parents",
+      //   isPrivate: true,
+      //   element: Generics,
+      //   role: ["admin", "manager"],
+      // },
     ],
   },
   {
