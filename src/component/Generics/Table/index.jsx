@@ -11,13 +11,13 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 
 function EnhancedTableHead(props) {
-  const { headCells, onSelectAllClick, numSelected, rowCount, } =
+  const { headCells, onSelectAllClick, checkbox, numSelected, rowCount, } =
     props;
 
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        {checkbox && <TableCell padding="checkbox">
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -27,7 +27,7 @@ function EnhancedTableHead(props) {
               'aria-label': 'select all desserts',
             }}
           />
-        </TableCell>
+        </TableCell>}
         {headCells.map((headCell) => (
           <TableCell key={headCell.id} sx={{ color: "#929FAF", fontSize: "16px", cursor: "pointer" }}>
             {headCell.label}
@@ -40,7 +40,7 @@ function EnhancedTableHead(props) {
 
 export default function GenericTable(props) {
   const [selected, setSelected] = React.useState([]);
-  const { headCells, rows, open } = props;
+  const { headCells, rows, open, checkbox = true } = props;
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -67,14 +67,14 @@ export default function GenericTable(props) {
         selected.slice(selectedIndex + 1),
       );
     }
-    setSelected(newSelected);
+    checkbox && setSelected(newSelected);
   };
 
   // const isSelected = () => selected.indexOf(id) !== -1;
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ marginTop:"24px", height: open ? "64px" : 0, overflow: 'hidden' }}>
+      <Box sx={{ marginTop: "24px", height: open ? "64px" : 0, overflow: 'hidden' }}>
         <Table>
           <TableBody>
             <TableRow sx={{ display: "flex", gap: 5 }}>
@@ -83,7 +83,7 @@ export default function GenericTable(props) {
           </TableBody>
         </Table>
       </Box>
-        
+
       <Paper sx={{ width: '100%', mb: 2 }}>
         <TableContainer>
           <Table
@@ -94,6 +94,7 @@ export default function GenericTable(props) {
               onSelectAllClick={handleSelectAllClick}
               rowCount={rows.length}
               headCells={headCells}
+              checkbox={checkbox}
             />
             <TableBody>
               {rows.map((row, index) => {
@@ -111,7 +112,8 @@ export default function GenericTable(props) {
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer' }}
                   >
-                    <TableCell padding="checkbox">
+                    {checkbox && 
+                      <TableCell padding="checkbox">
                       <Checkbox
                         color="primary"
                         checked={isItemSelected}
@@ -119,13 +121,13 @@ export default function GenericTable(props) {
                           'aria-labelledby': labelId,
                         }}
                       />
-                    </TableCell>
+                    </TableCell>}
 
-                    {headCells.map((val) => 
-                      <TableCell 
-                        align='left' 
-                        key={val.id} 
-                        sx={{color: "#253E5F"}}>
+                    {headCells.map((val) =>
+                      <TableCell
+                        align='left'
+                        key={val.id}
+                        sx={{ color: "#253E5F" }}>
                         {
                           val.render ? val?.render(row) : row[val.id]
                         }
