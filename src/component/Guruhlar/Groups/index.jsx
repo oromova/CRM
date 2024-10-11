@@ -3,7 +3,7 @@ import { GenericTable } from '../../Generics/Table';
 import { Action, Container } from './style';
 import { Breadcrumb } from '../../Generics/BreadCrumb/index';
 import GenericButton from '../../Generics/Button';
-import GenericSelect from '../../Generics/Select';
+// import GenericSelect from '../../Generics/Select';
 import AllLidsModal from './modal';
 
 export const Groups = () => {
@@ -90,11 +90,11 @@ export const Groups = () => {
     },
   ];
 
-  const data1 = [
-    { value: 'uzbek', title: 'Uzbek' },
-    { value: 'russian', title: 'Russian' },
-    { value: 'english', title: 'English' }
-  ];
+  // const data1 = [
+  //   { value: 'uzbek', title: 'Uzbek' },
+  //   { value: 'russian', title: 'Russian' },
+  //   { value: 'english', title: 'English' }
+  // ];
 
   const onToggleModal = () => {
     setModal(!modalOpen);
@@ -114,18 +114,18 @@ export const Groups = () => {
         onSave={onSave}
       />
       <Breadcrumb>
-        <GenericButton type='import' onClick={() => setOpen(!open)}>
-          Import
+        <GenericButton type='add' onClick={() => onToggleModal()}>
+          Guruh qo'shish
         </GenericButton>
       </Breadcrumb>
       <GenericTable 
-        open={open} 
+        //open={open} 
         headCells={headCells} 
         rows={rows}
         checkbox={false}
         >
-        <GenericSelect data={data1} />
-        <GenericSelect data={data1} />
+        {/* <GenericSelect data={data1} />
+        <GenericSelect data={data1} /> */}
       </GenericTable>
     </Container >
   );

@@ -16,7 +16,7 @@ import ArchiveStudentsView from '../view/Students/Archive'
 import ActiveStudentsView from '../view/Students/Active'
 import AllStudentsView  from '../view/Students/All'
 import { GroupsView } from '../view/Guruhlar/Groups'
-import { ScheduleView } from '../view/Guruhlar/Schedule'
+// import { ScheduleView } from '../view/Guruhlar/Schedule'
 import { RoomsView } from '../view/Guruhlar/Rooms'
 
 const sidebar = [
@@ -142,14 +142,14 @@ const sidebar = [
         element: GroupsView,
         role: ["admin", "manager"],
       },
-      {
-        id: `5-2`,
-        title: "Dars Jadvali",
-        path: "/guruhlar/jadval",
-        isPrivate: true,
-        element: ScheduleView,
-        role: ["admin", "manager"]
-      },
+      // {
+      //   id: `5-2`,
+      //   title: "Dars Jadvali",
+      //   path: "/guruhlar/jadval",
+      //   isPrivate: true,
+      //   element: ScheduleView,
+      //   role: ["admin", "manager"]
+      // },
       {
         id: `5-3`,
         title: "Xonalar",
