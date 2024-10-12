@@ -123,6 +123,7 @@ export const Groups = () => {
         headCells={headCells} 
         rows={rows}
         checkbox={false}
+        url="/guruhlar/groups/checkin"
         >
         {/* <GenericSelect data={data1} />
         <GenericSelect data={data1} /> */}

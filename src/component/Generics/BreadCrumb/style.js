@@ -16,7 +16,9 @@ const getColor = ({title}) => {
     case "HR":
       return 'rgb(255, 240, 246)';
     case "Sozlamalar":
-      return 'rgb(255, 242, 232)'
+      return 'rgb(255, 242, 232)';
+    default: 
+      return "#FFF2E8";
   }
 }
 

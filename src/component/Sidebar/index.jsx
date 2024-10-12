@@ -7,7 +7,6 @@ import sidebar from '../../utils/sidebar';
 
 export const Sidebar = () => {
   const [open, setOpen] = useState([]);
-  const [active, setActive] = useState('');
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,7 +27,7 @@ export const Sidebar = () => {
     navigate("/login");
   };
 
-  const onClickParent = ({ id, children, path, title}, e) => {
+  const onClickParent = ({ id, children, path, title }, e) => {
     e.preventDefault();
     if (open?.includes(id)) {
       let data = open.filter((val) => val !== id);
@@ -39,13 +38,13 @@ export const Sidebar = () => {
       setOpen([...open, id]);
     }
     if (!children) {
-      navigate(path, { state: {parent:title }});
+      navigate(path, { state: { parent: title } });
     }
   };
 
   const onClickChild = (parent, child, path, e) => {
-    e.preventDefault()
-    navigate(path, {state: { parent, child }});
+    e.preventDefault();
+    navigate(path, { state: { parent, child } });
   };
 
   return (
@@ -77,7 +76,8 @@ export const Sidebar = () => {
                         key={child?.id}
                         to={child.path}
                         onClick={(e) => onClickChild(parent.title, child.title, child.path, e)}
-                        active={(location.pathname === child.path).toString()}
+                        active={location.pathname
+                          ?.includes(child.path).toString()}
                       >
                         <MenuItem.Title>
                           {child?.title}

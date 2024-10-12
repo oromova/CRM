@@ -9,6 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
+import { useNavigate } from 'react-router-dom';
 
 function EnhancedTableHead(props) {
   const { headCells, onSelectAllClick, checkbox, numSelected, rowCount, } =
@@ -40,7 +41,8 @@ function EnhancedTableHead(props) {
 
 export default function GenericTable(props) {
   const [selected, setSelected] = React.useState([]);
-  const { headCells, rows, open, checkbox = true } = props;
+  const { headCells, rows, open, checkbox = true, url } = props;
+  const navigate = useNavigate();
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -52,22 +54,27 @@ export default function GenericTable(props) {
   };
 
   const handleClick = (event, id) => {
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
+    if (checkbox) {
+      const selectedIndex = selected.indexOf(id);
+      let newSelected = [];
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
+      if (selectedIndex === -1) {
+        newSelected = newSelected.concat(selected, id);
+      } else if (selectedIndex === 0) {
+        newSelected = newSelected.concat(selected.slice(1));
+      } else if (selectedIndex === selected.length - 1) {
+        newSelected = newSelected.concat(selected.slice(0, -1));
+      } else if (selectedIndex > 0) {
+        newSelected = newSelected.concat(
+          selected.slice(0, selectedIndex),
+          selected.slice(selectedIndex + 1),
+        );
+      }
+      setSelected(newSelected);
+    } else {
+      url && navigate(url, { state: { parent: "Guruhlar", child: "Checkin" } });
     }
-    checkbox && setSelected(newSelected);
+
   };
 
   // const isSelected = () => selected.indexOf(id) !== -1;
@@ -112,16 +119,16 @@ export default function GenericTable(props) {
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer' }}
                   >
-                    {checkbox && 
+                    {checkbox &&
                       <TableCell padding="checkbox">
-                      <Checkbox
-                        color="primary"
-                        checked={isItemSelected}
-                        inputProps={{
-                          'aria-labelledby': labelId,
-                        }}
-                      />
-                    </TableCell>}
+                        <Checkbox
+                          color="primary"
+                          checked={isItemSelected}
+                          inputProps={{
+                            'aria-labelledby': labelId,
+                          }}
+                        />
+                      </TableCell>}
 
                     {headCells.map((val) =>
                       <TableCell

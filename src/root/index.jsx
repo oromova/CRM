@@ -3,15 +3,22 @@ import { Container } from './style';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import sidebar from '../utils/sidebar';
 import { Sidebar } from '../component/Sidebar';
+import Checkin from '../component/Guruhlar/Groups/Сheckin';
 
 export const Root = () => {
   return (
     <Container>
       <Routes>
         <Route element={<Sidebar />}>
+        <Route
+          // key={child.id}
+          path={"/guruhlar/groups/checkin"}
+          element={<Checkin />}
+          />;
           {
             sidebar.map((parent) => {
               const ElementParent = parent.element;
+              
               if (parent?.children) {
                 return parent.children.map((child) => {
                   const ElementChild = child.element;
@@ -20,7 +27,8 @@ export const Root = () => {
                       key={child.id}
                       path={child.path}
                       element={<ElementChild />}
-                    />);
+                    />
+                  );
                 });
               } else
                 return !parent.hidden && (
