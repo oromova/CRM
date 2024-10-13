@@ -11,7 +11,7 @@ export const Root = () => {
       <Routes>
         <Route element={<Sidebar />}>
         <Route
-          // key={child.id}
+          //key={child.id}
           path={"/guruhlar/groups/checkin"}
           element={<Checkin />}
           />;

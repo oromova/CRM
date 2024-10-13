@@ -30,7 +30,15 @@ function EnhancedTableHead(props) {
           />
         </TableCell>}
         {headCells.map((headCell) => (
-          <TableCell key={headCell.id} sx={{ color: "#929FAF", fontSize: "16px", cursor: "pointer" }}>
+          <TableCell 
+            key={headCell.id} 
+            align={headCell?.align || "left"}
+            sx={{ 
+              color: "#929FAF", 
+              fontSize: "16px", 
+              cursor: "pointer" 
+              }}
+              >
             {headCell.label}
           </TableCell>
         ))}
@@ -72,7 +80,7 @@ export default function GenericTable(props) {
       }
       setSelected(newSelected);
     } else {
-      url && navigate(url, { state: { parent: "Guruhlar", child: "Checkin" } });
+      url && navigate(url, { state: { parent: "Groups", child: "Checkin" } });
     }
 
   };
@@ -132,7 +140,7 @@ export default function GenericTable(props) {
 
                     {headCells.map((val) =>
                       <TableCell
-                        align='left'
+                        align={val?.align || "left"}
                         key={val.id}
                         sx={{ color: "#253E5F" }}>
                         {

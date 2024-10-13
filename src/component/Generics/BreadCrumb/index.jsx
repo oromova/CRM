@@ -12,7 +12,7 @@ export const Breadcrumb = (props) => {
        {location.state?.child && <Arrow/>}
       <Subtitle>{location.state?.child}</Subtitle>
       <div style={{display:'flex', marginLeft: 'auto', gap: 16}}>
-        {props?.children}
+        {props.children}
       </div>
     </Container>
   ) : null;
