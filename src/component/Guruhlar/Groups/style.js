@@ -16,7 +16,7 @@ Icon.Birinchi = styled(birinchi)``;
 export const Container = styled.div``;
 export const Action = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   z-index: 9999;
 `;
 
@@ -46,8 +46,9 @@ export const ModalContainer = styled.div`
   height: 200px;
   background: white;
   border-radius: 8px;
-  margin: 40px, 0px, 0px, -70px;
-  /* transform:translate(-50%, -50%) */
+  transform: translate(-50%, 15%);
+  top: ${({ y }) => `${y}px`};
+  left: ${({ x }) => `${x}px`};
 `;
 
 export const Arrow = styled.div`
@@ -55,8 +56,20 @@ export const Arrow = styled.div`
   height: 32px;
   border: 1px solid #f0f0f0;
   align-self: center;
-  margin-top: -13px;
+  margin-top: -16px;
   background-color: white;
   border-color: #f0f0f0 transparent transparent #f0f0f0;
   transform: rotate(45deg);
-`
+`;
+
+export const StatusWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 15px;
+  &:hover {
+    background-color: #f8fafc;
+  }
+`;

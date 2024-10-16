@@ -153,7 +153,10 @@ export default function GenericTable(props) {
               })}
               {rows?.length < 1 && (
                 <TableRow>
-                  <TableCell align='center' colSpan={6}>No Data</TableCell>
+                  <TableCell 
+                    align='center' 
+                    colSpan={6}>No Data
+                  </TableCell>
                 </TableRow>
               )}
             </TableBody>

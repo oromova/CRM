@@ -9,7 +9,6 @@ import moment from 'moment';
 import { useState } from 'react';
 import Status from './Status';
 
-
 export const Checkin = () => {
   const [rows] = useState(students);
 
