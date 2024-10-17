@@ -18,6 +18,8 @@ import AllStudentsView  from '../view/Students/All'
 import { GroupsView } from '../view/Guruhlar/Groups'
 // import { ScheduleView } from '../view/Guruhlar/Schedule'
 import { RoomsView } from '../view/Guruhlar/Rooms'
+import RolesView from '../view/HR/Roles'
+import HodimlarView from '../view/HR/Hodimlar';
 
 const sidebar = [
   {
@@ -201,7 +203,7 @@ const sidebar = [
         title: "Ro'llar",
         path: "/hr/role",
         isPrivate: true,
-        element: Generics,
+        element: RolesView,
         role: ["admin", "manager"],
       },
       {
@@ -209,7 +211,7 @@ const sidebar = [
         title: "Hodimlar",
         path: "/hr/hodimlar",
         isPrivate: true,
-        element: Generics,
+        element: HodimlarView,
         role: ["admin", "manager"],
       },
     ],

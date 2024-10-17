@@ -14,7 +14,12 @@ export const GenericSelect = (props) => {
   return (
     <FormControl
       fullWidth
-      sx={{ minWidth: 120, width: width || 150 }}
+      sx={{ 
+        m: 0,
+        minWidth: 120, 
+        width: width || 150, 
+        // marginTop: props?.mt || 0,
+      }}
       size='small'
     >
       <Select
@@ -24,11 +29,11 @@ export const GenericSelect = (props) => {
       >
         {data?.map((item) => {
           return (
-            <MenuItem 
-              sx={{ color: '#929FAF', fontSize: "14px" }} 
-              key={item.value} 
+            <MenuItem
+              sx={{ color: '#929FAF', fontSize: "14px" }}
+              key={item.value}
               value={item?.value}
-              >
+            >
               {item?.title}
             </MenuItem>
           );
