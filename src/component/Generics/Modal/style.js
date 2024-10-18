@@ -4,9 +4,9 @@ export const Container = styled.div`
   position: absolute;
   inset: 0;
   background: rgba(37, 62, 95, 0.5);
+  overflow-y: scroll;
   z-index: 999999;
 `
-
 export const Wrapper = styled.div`
   margin: auto;
   margin-top: 78px;
@@ -17,12 +17,17 @@ export const Wrapper = styled.div`
   padding: 32px 48px;
   /* gap: 16px; */
   background-color: white;
+  max-height: 90%;
+  gap: 16px;
+  overflow: hidden;
+  overflow-y: scroll;
+  &::-webkit-scrollbar{
+    display: none;
+  }
 `
-
 export const Footer = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-left: auto;
   gap: 16px;
-  margin-top: 24px;
+  margin-top: 32px;
 `
