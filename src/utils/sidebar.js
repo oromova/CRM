@@ -20,6 +20,8 @@ import { GroupsView } from '../view/Guruhlar/Groups'
 import { RoomsView } from '../view/Guruhlar/Rooms'
 import RolesView from '../view/HR/Roles'
 import HodimlarView from '../view/HR/Hodimlar';
+import FieldsView from '../view/Kurslar/Field'
+import GroupsListView from '../view/Kurslar/List'
 
 const sidebar = [
   {
@@ -176,7 +178,7 @@ const sidebar = [
         title: "Barcha Kurslar",
         path: "/kurslar/all-kurslar",
         isPrivate: true,
-        element: Generics,
+        element: GroupsListView,
         role: ["admin", "manager"],
       },
       {
@@ -184,7 +186,7 @@ const sidebar = [
         title: "Yo'nalishlar",
         path: "/kurslar/yonalish",
         isPrivate: true,
-        element: Generics,
+        element: FieldsView,
         role: ["admin", "manager"],
       },
     ],
