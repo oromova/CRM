@@ -73,3 +73,36 @@ export const StatusWrapper = styled.div`
     background-color: #f8fafc;
   }
 `;
+export const Devider = styled.div`
+
+`
+Devider.Filiallar =styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  gap: 8px;
+`
+Devider.Title = styled.div`
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #253e5f80;
+`
+export const Section = styled.div`
+  display: flex;
+  align-items: center;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px 0 0 4px;
+  background-color: #f8fafc;
+  height: 40px;
+`
+export const Input = styled.input`
+  height: 40px;
+  outline: none;
+  border:1px solid #F0F0F0;
+  border-left: none;
+  border-radius: 0px 4px 4px 0px;
+  padding-left: 15px;
+`
