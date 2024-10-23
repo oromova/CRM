@@ -101,7 +101,7 @@ export const Section = styled.div`
 export const Input = styled.input`
   height: 40px;
   outline: none;
-  border:1px solid #F0F0F0;
+  border: 1px solid #F0F0F0;
   border-left: none;
   border-radius: 0px 4px 4px 0px;
   padding-left: 15px;

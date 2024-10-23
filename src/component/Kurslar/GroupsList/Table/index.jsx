@@ -8,8 +8,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Button from "../../Generics/Button"
-import { Delete, Edit, Status, TimelineWrapper, Title } from './tableStyle';
+import Button from "../../../Generics/Button";
+import CourseModal from '../CourseModal';
+import { Delete, Edit, Status, TimelineWrapper, Title } from './style';
 
 const styleCell = {
   display: "flex",
@@ -22,43 +23,56 @@ const styleCell = {
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
+  const [openAdd, setOpenAdd] = React.useState(false);
+
   const onAddKurs = (e) => {
     e.stopPropagation();
+    setOpenAdd(!openAdd);
   };
+
+  const onSave = (e) => {
+    e.stopPropagation();
+    setOpenAdd(!openAdd);
+  }
+
   return (
     <React.Fragment>
+      <CourseModal open={openAdd} onClose={onAddKurs} onSave={onSave} />
+      
       <TableRow
         sx={{
           ":hover": { background: "#F8FAFC", cursor: "pointer" },
-          "& > * ": { borderBottom: "unset" },
-          }}
+          "& > *": { borderBottom: "unset" },
+        }}
         onClick={() => setOpen(!open)}
       >
         <TableCell
           component="th"
           scope='row'
           sx={{
-           color: "#253E5F",
-           fontWeight: 600,
-           fontSize: "18px",
-           border: 0,
+            color: "#253E5F",
+            fontWeight: 600,
+            fontSize: "18px",
+            border: 0,
           }}
         >
           {row.title}
         </TableCell>
-        <TableCell 
-          sx={{ 
+        <CourseModal open={openAdd} onClose={onAddKurs} onSave={onSave}/>
+        <TableCell
+          sx={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "flex-end",
             alignItems: "center",
             border: 0,
-          }} 
+          }}
           align='right'
         >
+         
           <Button onClick={onAddKurs} type="add"></Button>
-          <Edit/>
-          <Delete/>
+          <Edit />
+          <Delete />
         </TableCell>
       </TableRow>
       <TableRow>
@@ -70,7 +84,8 @@ function Row(props) {
                   {row?.groups?.map((rw) => {
                     return (
                       <TableRow
-                        key={rw.date} sx={{
+                        key={rw.date}
+                        sx={{
                           display: "flex",
                           border: "1px solid #d8d8d8",
                           borderRadius: "8px",
@@ -99,13 +114,13 @@ function Row(props) {
                             +{rw.students.length}
                           </Title>
                         </TableCell>
-                        <TableCell 
-                          sx={{ 
-                            border: 0, 
+                        <TableCell
+                          sx={{
+                            border: 0,
                             display: "flex",
                             alignItems: "center"
-                           }}>
-                          <Edit/>
+                          }}>
+                          <Edit />
                         </TableCell>
                       </TableRow>
                     );
@@ -121,7 +136,7 @@ function Row(props) {
   );
 }
 
-export default function CollapsibleTable(props) {
+export function CollapsibleTable(props) {
   const { cells, rows } = props;
   return (
     <TableContainer component={Paper}>
@@ -145,4 +160,4 @@ export default function CollapsibleTable(props) {
   );
 }
 
-export { CollapsibleTable };
+export default CollapsibleTable;

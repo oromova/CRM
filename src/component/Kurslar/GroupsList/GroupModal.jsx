@@ -40,10 +40,10 @@ export const GroupModal = (props) => {
         </Devider.Filiallar>
         <Devider.Role>
           <Devider.Title>Role</Devider.Title>
-        <Input/>
-        <Input/>
-        <Input/>
-        <Input/>
+          <Input/>
+          <Input/>
+          <Input/>
+          <Input/>
         </Devider.Role>
       </Devider>
     </Modal>

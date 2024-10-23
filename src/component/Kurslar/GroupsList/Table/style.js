@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import edit from '../../../assets/icons/lids/edit.svg?react'
-import del from '../../../assets/icons/lids/delete.svg?react'
+import edit from "../../../../assets/icons/lids/edit.svg?react";
+import del from "../../../../assets/icons/lids/delete.svg?react";
 
 export const Edit = styled(edit)`
   padding: 4px;
@@ -14,16 +14,16 @@ export const Delete = styled(del)`
   width: 32px;
   height: 32px;
   cursor: pointer;
-`
+`;
 
 export const Title = styled.div`
   display: flex;
-  justify-content: ${({center})=> center && "center"};
+  justify-content: ${({ center }) => center && "center"};
   font-family: Montserrat;
   font-weight: 500;
   line-height: 24px;
   color: ${({ color }) => (color ? color : "#253e5f")};
-  font-size: ${({ size }) => (size ? `${size}px` : "16px")};;
+  font-size: ${({ size }) => (size ? `${size}px` : "16px")};
   white-space: nowrap;
 `;
 

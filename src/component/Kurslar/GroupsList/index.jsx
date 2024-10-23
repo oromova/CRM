@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import { GenericTable } from '../../Generics/Table';
+import { useState } from 'react';
 import { Action, Container } from './style';
-import { Breadcrumb } from '../../Generics/BreadCrumb/index';
+import { Breadcrumb } from '../../Generics/BreadCrumb';
 import GenericButton from '../../Generics/Button';
-// import GenericSelect from '../../Generics/Select';
 import GroupModal from './GroupModal';
 import { rows } from '../../../mock/groups';
 import CollapsibleTable from './Table';
@@ -18,9 +16,6 @@ export const GroupsList = () => {
     setModal(!modalOpen);
     setModalProps(res);
   };
-  // const onMove = (e) => {
-  //   e.stopPropagation();
-  // };
 
   const headCells = [
     { id: "title", label: "Kurslar turi", },
@@ -58,13 +53,6 @@ export const GroupsList = () => {
           Guruh qo'shish
         </GenericButton>
       </Breadcrumb>
-      {/* <GenericTable
-        headCells={headCells}
-        rows={rows}
-        checkbox={false}
-        url="/guruhlar/groups/checkin"
-      >
-      </GenericTable> */}
       <CollapsibleTable rows={rows} cells={headCells} />
     </Container >
   );

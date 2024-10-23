@@ -128,25 +128,16 @@ export const Fields = () => {
         onSave={onSave}
       />
       <Breadcrumb>
-        {/* <GenericButton type='filter' onClick={() => setOpen(!open)}>
-          Filter
-        </GenericButton> */}
-        <GenericButton type='primary' onClick={onToggleModal}>
-          Xona qo'shish
+         <GenericButton type='primary' onClick={onToggleModal}>
+          Yo'nalish qo'shish
         </GenericButton>
       </Breadcrumb>
       <GenericTable 
-        // open={open} 
+
         headCells={headCells} 
         rows={rows}
         checkbox={false}
         >
-        {/* <GenericSelect value='uzbek' data={data1} />
-        <GenericSelect value='english' data={data1} />
-        <GenericSelect value='russian' data={data1} />
-        <GenericSelect data={data1} />
-        <GenericSelect data={data1} />
-        <GenericSelect data={data1} /> */}
       </GenericTable>
     </Container >
   );

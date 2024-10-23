@@ -18,5 +18,6 @@ export const Modal = (props) => {
       </Wrapper>
     </Container>,
     document.body
-  ):null;
+  )
+  :null;
 };
