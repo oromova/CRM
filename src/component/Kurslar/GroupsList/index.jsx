@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Action, Container } from './style';
 import { Breadcrumb } from '../../Generics/BreadCrumb';
 import GenericButton from '../../Generics/Button';
-import GroupModal from './GroupModal';
+import AllLidsModal from './GroupModal';
 import { rows } from '../../../mock/groups';
 import CollapsibleTable from './Table';
 
@@ -20,12 +20,12 @@ export const GroupsList = () => {
   const headCells = [
     { id: "title", label: "Kurslar turi", },
     {
-      id: "action", label: "",
+      id: "action", 
+      label: "",
       render: (res) => (
         <Action>
           <Action.Edit onClick={(e) => onEdit(e, res)} />
-          {/* <Action.Move onClick={onMove} /> */}
-          <Action.Delete onClick={() => { }} />
+          <Action.Delete onClick={() => {}} />
         </Action>
       ),
     },
@@ -42,7 +42,7 @@ export const GroupsList = () => {
 
   return (
     <Container>
-      <GroupModal
+      <AllLidsModal
         data={modalProps}
         open={modalOpen}
         onClose={onToggleModal}
@@ -53,6 +53,7 @@ export const GroupsList = () => {
           Guruh qo'shish
         </GenericButton>
       </Breadcrumb>
+
       <CollapsibleTable rows={rows} cells={headCells} />
     </Container >
   );

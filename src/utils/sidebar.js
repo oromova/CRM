@@ -22,6 +22,7 @@ import RolesView from '../view/HR/Roles'
 import HodimlarView from '../view/HR/Hodimlar';
 import FieldsView from '../view/Kurslar/Field'
 import GroupsListView from '../view/Kurslar/List'
+import UmumiyView from '../view/Sozlamalar/Umumiy'
 
 const sidebar = [
   {
@@ -227,6 +228,14 @@ const sidebar = [
     element: Generics,
     role: ["admin", "manager"],
     children: [
+      {
+        id: `8 - 1`,
+        title: "Umumiy Sozlamalar",
+        path: "/sozlamalar/umumiySozlamalar",
+        isPrivate: true,
+        element: UmumiyView,
+        role: ["admin", "manager"],
+      },
       {
         id: `8 - 2`,
         title: "Manager",

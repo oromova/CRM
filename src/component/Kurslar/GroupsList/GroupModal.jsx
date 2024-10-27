@@ -5,12 +5,8 @@ import Title from '../../Generics/Title';
 import { Devider, Input, Section } from "./style";
 import { Checkbox } from "@mui/material";
 
-export const GroupModal = (props) => {
+export const AllLidsModal = (props) => {
   const { data } = props;
-  // const selectData = data && [
-  //   { value: "Frontend", title: "Frontend" },
-  //   { value: "Backend", title: "Backend" },
-  // ];
 
   return (
     <Modal {...props}>
@@ -50,4 +46,4 @@ export const GroupModal = (props) => {
   );
 };
 
-export default GroupModal;
+export default AllLidsModal;

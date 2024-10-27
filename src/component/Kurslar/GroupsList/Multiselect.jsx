@@ -32,7 +32,8 @@ const names = [
 
 function getStyles(name, personName, theme) {
   return {
-    fontWeight: personName.includes(name)
+    fontWeight: 
+    personName.includes(name)
       ? theme.typography.fontWeightMedium
       : theme.typography.fontWeightRegular,
   };
@@ -90,7 +91,6 @@ export default function MultipleSelect() {
         sx={{
           width: "100%",
           maxHeight: "40px",
-
         }}
         size='small'
       >

@@ -31,6 +31,7 @@ export const Status = styled.div`
   color: ${({ active }) => (active ? "#52C41A" : "#FAAD14")};
   font-family: Montserrat;
   font-size: ${({ size }) => (size ? `${size}px` : "16px")};
+  
   &::before {
     display: inline-block;
     margin-right: 8px;

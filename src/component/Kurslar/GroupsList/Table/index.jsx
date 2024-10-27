@@ -33,12 +33,12 @@ function Row(props) {
   const onSave = (e) => {
     e.stopPropagation();
     setOpenAdd(!openAdd);
-  }
+  };
 
   return (
     <React.Fragment>
       <CourseModal open={openAdd} onClose={onAddKurs} onSave={onSave} />
-      
+
       <TableRow
         sx={{
           ":hover": { background: "#F8FAFC", cursor: "pointer" },
@@ -58,7 +58,7 @@ function Row(props) {
         >
           {row.title}
         </TableCell>
-        <CourseModal open={openAdd} onClose={onAddKurs} onSave={onSave}/>
+        <CourseModal open={openAdd} onClose={onAddKurs} onSave={onSave} />
         <TableCell
           sx={{
             display: "flex",
@@ -69,7 +69,6 @@ function Row(props) {
           }}
           align='right'
         >
-         
           <Button onClick={onAddKurs} type="add"></Button>
           <Edit />
           <Delete />
@@ -105,7 +104,9 @@ function Row(props) {
                           <Title color={"#1890FF"}>{rw.location}</Title>
                         </TableCell>
                         <TableCell sx={{ ...styleCell, flex: 2, gap: "8px" }}>
-                          <TimelineWrapper>{rw.timeline.replace(/ /g, " - ")}</TimelineWrapper>
+                          <TimelineWrapper>
+                            {rw.timeline.replace(/ /g, " - ")}
+                          </TimelineWrapper>
                           <TimelineWrapper time>{rw.time}</TimelineWrapper>
                         </TableCell>
                         <TableCell sx={styleCell}>
@@ -136,8 +137,8 @@ function Row(props) {
   );
 }
 
-export function CollapsibleTable(props) {
-  const { cells, rows } = props;
+export default function CollapsibleTable(props) {
+  const { rows } = props;
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -160,4 +161,4 @@ export function CollapsibleTable(props) {
   );
 }
 
-export default CollapsibleTable;
+export { CollapsibleTable };

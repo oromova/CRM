@@ -1,24 +1,39 @@
-import React from 'react';
 import { Container } from './style';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import sidebar from '../utils/sidebar';
 import { Sidebar } from '../component/Sidebar';
 import Checkin from '../component/Guruhlar/Groups/Сheckin';
+import UmumiySidebar from '../component/Sozlamalar/Umumiy/Sidebar';
+import { umumiy } from '../utils/sozlamalar';
 
 export const Root = () => {
   return (
     <Container>
       <Routes>
+        {/* MAIN */}
         <Route element={<Sidebar />}>
-        <Route
-          //key={child.id}
-          path={"/guruhlar/groups/checkin"}
-          element={<Checkin />}
+          {/* Sozlamalar */}
+          <Route element={<UmumiySidebar />}>
+            {umumiy.map((item) => {
+              const { element: Element } = item;
+              return (
+                <Route
+                  key={item.id}
+                  path={`sozlamalar/umumiy/${item.path}`}
+                  element={<Element />}
+                />
+              );
+            })}
+          </Route>
+          <Route
+            //key={child.id}
+            path={"/guruhlar/groups/checkin"}
+            element={<Checkin />}
           />;
           {
             sidebar.map((parent) => {
               const ElementParent = parent.element;
-              
+
               if (parent?.children) {
                 return parent.children.map((child) => {
                   const ElementChild = child.element;
@@ -52,6 +67,7 @@ export const Root = () => {
           })
         }
         <Route path='/' element={<Navigate to={"/analitika"} />} />
+        <Route path='/sozlamalar/umumiy/' element={<Navigate to={"/sozlamalar/umumiy/check"} />} />
         <Route path='*' element={<h1> 404 not found </h1>} />
       </Routes>
     </Container>
