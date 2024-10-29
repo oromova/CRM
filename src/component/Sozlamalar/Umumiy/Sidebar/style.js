@@ -25,8 +25,10 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  border: 1px solid blue;
+  border-left: 1px solid #f0f0f0;
+  padding: 0 31px 31px 31px;
 `;
+
 export const Link = styled(NavLink)`
   display: flex;
   align-items: center;

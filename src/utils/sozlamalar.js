@@ -1,4 +1,4 @@
-import check from "../assets/icons/sozlamalar/check.svg?react";
+import Check from "../assets/icons/sozlamalar/check.svg?react";
 import filial from "../assets/icons/sozlamalar/filiallar.svg?react";
 import sms from "../assets/icons/sozlamalar/xabarnoma.svg?react";
 import sorov from "../assets/icons/sozlamalar/so'rovnoma.svg?react";
@@ -6,9 +6,10 @@ import status from "../assets/icons/sozlamalar/call.svg?react";
 
 // Components
 import { Generics } from "../view/Generics";
+import CheckView from "../view/Sozlamalar/Check";
 
 export const umumiy = [
-  { id: 1, icon: check, element: Generics, path: "check", title: "Check" },
+  { id: 1, icon: Check, element: CheckView, path: "check", title: "Check" },
   {
     id: 2,
     icon: filial,
