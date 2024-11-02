@@ -31,12 +31,12 @@ const Button = styled.button`
   gap: 8px;
   white-space: nowrap;
 
-  max-width: ${({ width }) =>  getValue(width)};
-  margin-top: ${({ mt }) =>  getValue(mt)};
-  margin-bottom: ${({ mb }) =>  getValue(mb)};
-  margin-right: ${({ mr }) =>  getValue(mr)};
-  margin-left: ${({ ml }) =>  getValue(ml)};
-  margin-left: ${({ align }) =>  align};
+  max-width: ${({ width }) => getValue(width)};
+  margin-top: ${({ mt }) => getValue(mt)};
+  margin-bottom: ${({ mb }) => getValue(mb)};
+  margin-right: ${({ mr }) => getValue(mr)};
+  margin-left: ${({ ml }) => getValue(ml)};
+  margin-left: ${({ align }) => align};
 
   &:active {
     transform: scale(0.98);

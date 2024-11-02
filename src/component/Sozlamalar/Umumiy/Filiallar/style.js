@@ -5,7 +5,6 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 export const ImgBox = styled.div`
-  position: relative;
   width: 112px;
   height: 112px;
   border-radius: 8px;

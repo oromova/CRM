@@ -7,6 +7,7 @@ import { Container, FileUpload, ImgBox } from './style';
 
 export const Check = () => {
   const [url, setUrl] = useState("");
+
   const onUpload = (e) => {
     const [file] = e.target.files;
     const url = URL.createObjectURL(file);

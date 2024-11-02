@@ -7,13 +7,14 @@ import status from "../assets/icons/sozlamalar/call.svg?react";
 // Components
 import { Generics } from "../view/Generics";
 import CheckView from "../view/Sozlamalar/Check";
+import FiliallarView from "../view/Sozlamalar/Filiallar";
 
 export const umumiy = [
   { id: 1, icon: Check, element: CheckView, path: "check", title: "Check" },
   {
     id: 2,
     icon: filial,
-    element: Generics,
+    element: FiliallarView,
     path: "filiallar",
     title: "Filiallar",
   },
