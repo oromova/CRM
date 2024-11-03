@@ -1,25 +1,32 @@
 import { useState } from 'react';
-import GenericButton from '../../../Generics/Button';
-import GenericInput from '../../../Generics/Input';
-import GenericSelect from '../../../Generics/Select';
-import Subtitle from '../../../Generics/Subtitle';
-import { Container, FileUpload, ImgBox } from './style';
+import { Container } from './style';
 import GenericTable from '../../../Generics/Table';
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 
-export const Check = () => {
-  const [url, setUrl] = useState("");
-  const [open, setOpen] = useState(false);
+export const Filiallar = () => {
+  const [open] = useState(false);
 
   const rows = [
-    { id: 1, location: "Bunyodkor ko'chasi, Chilonzor", filial: "Chilonzor" },
-    { id: 2, location: "Abdulla Qodiriy, Shayhontohur", filial: "Ganga" },
+    { id: 1, 
+      location: "Bunyodkor ko'chasi, 65-uy, Chilonzor", 
+      filial: "Chilonzor",
+      href: "https://maps.app.goo.gl/3b4PMXmkiJ1uZZKs8"
+    },
+    { id: 2, 
+      location: "Abdulla Qodiriy, Shayxontohur", 
+      filial: "Ganga",
+      href: "https://maps.app.goo.gl/3b4PMXmkiJ1uZZKs8"
+    },
   ];
   const cells = [
-    { id: 'filial', label: "Filiallar" },
+    { id: "filial", label: "Filiallar" },
     {
-      id: 'location', label: 'Manzil', align: 'right', render: () => {
-        return <span style={{ color: '#1890FF', textDecoration: 'underline'}}>{props?.location}</span>;
+      id: "location", 
+      label: "Manzil", 
+      align: "right", 
+      render: (props) => {
+        return <a href={props?.href} target='lang'>
+          {props?.location}
+          </a>
       }
     },
   ];
@@ -36,4 +43,4 @@ export const Check = () => {
   );
 };
 
-export default Check;
+export default Filiallar;

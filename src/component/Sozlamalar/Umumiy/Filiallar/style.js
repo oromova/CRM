@@ -4,21 +4,15 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const ImgBox = styled.div`
-  width: 112px;
-  height: 112px;
-  border-radius: 8px;
-  background: #f8fafc;
-  background-image: ${({url}) => `url(${url})`};
-  background-size: cover;
-  background-repeat: no-repeat;
-`
 
-export const FileUpload = styled.input`
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  opacity: 0;
-`
+export const Status = styled.div`
+  display: flex;
+  padding: 4px 10px;
+  border-radius: 16px;
+  background-color: #fff1f0;
+  color: red;
+  width: fit-content;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+`;
