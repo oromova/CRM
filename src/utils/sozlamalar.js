@@ -10,6 +10,7 @@ import CheckView from "../view/Sozlamalar/Check";
 import FiliallarView from "../view/Sozlamalar/Filiallar";
 import XabarnomaView from "../view/Sozlamalar/Xabarnoma";
 import SorovnomaView from "../view/Sozlamalar/Sorovnoma";
+import CallConfigView from "../view/Sozlamalar/CallConfig";
 
 export const umumiy = [
   { id: 1, icon: Check, element: CheckView, path: "check", title: "Check" },
@@ -34,5 +35,5 @@ export const umumiy = [
     path: "so'rovnoma",
     title: "So'rovnoma",
   },
-  { id: 4, icon: status, element: Generics, path: "status", title: "Status" },
+  { id: 4, icon: status, element: CallConfigView, path: "status", title: "Status" },
 ];
