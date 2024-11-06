@@ -66,10 +66,17 @@ export const Root = () => {
             />;
           })
         }
-        <Route path='/' element={<Navigate to={"/analitika"} />} />
-        <Route 
-          path='/sozlamalar/umumiy/' 
-          element={<Navigate to={"/sozlamalar/umumiy/check"} />} />
+        <Route path='/' element={
+          <Navigate to={"/analitika"} />} />
+        <Route
+          path='/sozlamalar/umumiy'
+          element={
+            <Navigate
+              to={"/sozlamalar/umumiy/check"}
+              state={{ path: ["Sozlamalar", "Umumiy", "Check"], child: "Check" }}
+            />
+            } 
+          />
         <Route path='*' element={<h1> 404 not found </h1>} />
       </Routes>
     </Container>

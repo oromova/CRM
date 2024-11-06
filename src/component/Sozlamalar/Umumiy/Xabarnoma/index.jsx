@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { Container } from './style';
 import GenericTable from '../../../Generics/Table';
 import { Status } from '../Filiallar/style';
-import { Switch } from '@mui/material';
+import Switch from '@mui/material/Switch';
+ import { Breadcrumb } from '../../BreadCrumb';
+import GenericButton from '../../../Generics/Button';
 
 export const Xabarnoma = () => {
   const [open] = useState(false);
@@ -50,6 +52,7 @@ export const Xabarnoma = () => {
 
   return (
     <Container>
+      <Breadcrumb/>
       <GenericTable
         checkbox={false}
         open={open}

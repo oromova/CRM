@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Container } from './style';
 import GenericTable from '../../../Generics/Table';
+import { CallConfigModal } from './modal';
+import Breadcrumb from '../../BreadCrumb';
+import GenericButton from '../../../Generics/Button';
 
 export const CallConfig = () => {
-  const [open] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const rows = [
     { id: 1, 
@@ -19,6 +22,7 @@ export const CallConfig = () => {
       color: "#3c00ff"
     },
   ];
+
   const cells = [
     { id: "type", label: "Belgilash turi" },
     {
@@ -40,8 +44,18 @@ export const CallConfig = () => {
     },
   ];
 
+  const onSave = () => { setOpen(false); };
+  const onClose = () => { setOpen(false); };
+
   return (
     <Container>
+      <CallConfigModal open={open}
+        onSave={onSave} onClose={onClose} />
+      <Breadcrumb>
+        <GenericButton onClick={() => setOpen(true)} type="add">
+          Rang qo'shish
+        </GenericButton>
+      </Breadcrumb>
       <GenericTable
         checkbox={false}
         open={open}

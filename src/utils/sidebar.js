@@ -231,7 +231,7 @@ const sidebar = [
       {
         id: `8 - 1`,
         title: "Umumiy Sozlamalar",
-        path: "/sozlamalar/umumiySozlamalar",
+        path: "/sozlamalar/umumiy/check",
         isPrivate: true,
         element: UmumiyView,
         role: ["admin", "manager"],

@@ -1,28 +1,31 @@
-import React from 'react';
 import { Body, Container, Link, Sidebar, Wrapper } from './style';
-import Breadcrumb from '../../../Generics/BreadCrumb';
 import { umumiy } from '../../../../utils/sozlamalar';
 import { Outlet } from 'react-router-dom';
+import { Breadcrumb } from '../../BreadCrumb';
 
 export const UmumiySidebar = () => {
   return (
     <Container>
-      <Breadcrumb></Breadcrumb>
+      {/* <Breadcrumb></Breadcrumb> */}
       <Wrapper>
         <Sidebar>
           {
             umumiy.map((item) => {
               const { icon: Icon } = item;
               return (
-                <Link key={item.path} to={`/sozlamalar/umumiy/${item.path}`}>
-                  <Icon className="sub-icon"/>  {item.title}
+                <Link
+                  key={item.path}
+                  to={`/sozlamalar/umumiy/${item.path}`}
+                  state={{ parent: ["Sozlamalar", "Umumiy"], child: item.title }}
+                >
+                  <Icon className="sub-icon" /> {item.title}
                 </Link>
               );
             })
           }
         </Sidebar>
         <Body>
-          <Outlet/>
+          <Outlet />
         </Body>
       </Wrapper>
     </Container>

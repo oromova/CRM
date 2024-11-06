@@ -2,9 +2,12 @@ import { useState } from 'react';
 import { Container } from './style';
 import GenericTable from '../../../Generics/Table';
 import { Status } from './style';
+import Breadcrumb from '../../BreadCrumb';
+import GenericButton from '../../../Generics/Button';
+import SorovnomaModal from './modal';
 
 export const Sorovnoma = () => {
-  const [open] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const rows = [
     {
@@ -50,8 +53,18 @@ export const Sorovnoma = () => {
     },
   ];
 
+  const onSave = () => { setOpen(false); };
+  const onClose = () => { setOpen(false); };
+
   return (
     <Container>
+      <SorovnomaModal open={open}
+        onSave={onSave} onClose={onClose} />
+      <Breadcrumb>
+        <GenericButton onClick={() => setOpen(true)} type="add">
+          So'rovnoma qo'shish
+        </GenericButton>
+      </Breadcrumb>
       <GenericTable
         checkbox={false}
         open={open}
