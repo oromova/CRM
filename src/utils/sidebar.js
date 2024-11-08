@@ -231,6 +231,7 @@ const sidebar = [
       {
         id: `8 - 1`,
         title: "Umumiy Sozlamalar",
+        parentID: 8,
         path: "/sozlamalar/umumiy/check",
         isPrivate: true,
         element: UmumiyView,
@@ -239,7 +240,8 @@ const sidebar = [
       {
         id: `8 - 2`,
         title: "Manager",
-        path: "/sozlamalar/manager",
+        parentID: 8,
+        path: "/sozlamalar/manager/tolovlar",
         isPrivate: true,
         element: Generics,
         role: ["admin", "manager"],
@@ -247,6 +249,7 @@ const sidebar = [
       {
         id: `8 - 3`,
         title: "Mentor",
+        parentID: 8,
         path: "/sozlamalar/mentor",
         isPrivate: true,
         element: Generics,
@@ -255,6 +258,7 @@ const sidebar = [
       {
         id: `8 - 4`,
         title: "Talaba",
+        parentID: 8,
         path: "/sozlamalar/talaba",
         isPrivate: true,
         element: Generics, 

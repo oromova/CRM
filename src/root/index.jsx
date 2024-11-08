@@ -4,15 +4,15 @@ import sidebar from '../utils/sidebar';
 import { Sidebar } from '../component/Sidebar';
 import Checkin from '../component/Guruhlar/Groups/Сheckin';
 import UmumiySidebar from '../component/Sozlamalar/Umumiy/Sidebar';
-import { umumiy } from '../utils/sozlamalar';
+import { manager, umumiy } from '../utils/sozlamalar';
+import ManagerSidebar from '../component/Sozlamalar/Manager/Sidebar';
 
 export const Root = () => {
   return (
     <Container>
       <Routes>
-        {/* MAIN */}
         <Route element={<Sidebar />}>
-          {/* Sozlamalar */}
+          {/* Sozlamalar  Umumiy*/}
           <Route element={<UmumiySidebar />}>
             {umumiy.map((item) => {
               const { element: Element } = item;
@@ -25,6 +25,21 @@ export const Root = () => {
               );
             })}
           </Route>
+          {/* Sozlamalar  Manager*/}
+          <Route element={<ManagerSidebar />}>
+            {manager.map((item) => {
+              const { element: Element } = item;
+              return (
+                <Route
+                  key={item.id}
+                  path={`sozlamalar/manager/${item.path}`}
+                  element={<Element />}
+                />
+              );
+            })}
+          </Route>
+          
+          {/* MAIN */}
           <Route
             //key={child.id}
             path={"/guruhlar/groups/checkin"}
@@ -75,8 +90,8 @@ export const Root = () => {
               to={"/sozlamalar/umumiy/check"}
               state={{ path: ["Sozlamalar", "Umumiy", "Check"], child: "Check" }}
             />
-            } 
-          />
+          }
+        />
         <Route path='*' element={<h1> 404 not found </h1>} />
       </Routes>
     </Container>
