@@ -250,7 +250,7 @@ const sidebar = [
         id: `8 - 3`,
         title: "Mentor",
         parentID: 8,
-        path: "/sozlamalar/mentor",
+        path: "/sozlamalar/ustoz/kpi",
         isPrivate: true,
         element: Generics,
         role: ["admin", "manager"],

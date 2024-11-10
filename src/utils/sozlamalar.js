@@ -15,6 +15,9 @@ import CallConfigView from "../view/Sozlamalar/CallConfig";
 // Manager
 import DarajalarView from "../view/Sozlamalar/Darajalar";
 import TolovlarView from "../view/Sozlamalar/Tolovlar";
+// Ustoz
+import KPIView from "../view/Sozlamalar/KPI";
+import OylikView from '../view/Sozlamalar/Oylik';
 
 export const umumiy = [
   { id: 1, icon: Check, element: CheckView, path: "check", title: "Check" },
@@ -58,3 +61,20 @@ export const manager = [
     title: "Darajalar",
   },
 ];
+
+export const ustoz = [
+  {
+    id: 2,
+    icon: Check,
+    element: KPIView,
+    path: "kpi",
+    title: "KPI",
+  },
+  {
+    id: 3,
+    icon: filial,
+    element: OylikView,
+    path: "oylik",
+    title: "Oylik",
+  },
+]
