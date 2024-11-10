@@ -4,9 +4,10 @@ import sidebar from '../utils/sidebar';
 import { Sidebar } from '../component/Sidebar';
 import Checkin from '../component/Guruhlar/Groups/Сheckin';
 import UmumiySidebar from '../component/Sozlamalar/Umumiy/Sidebar';
-import { manager, umumiy, ustoz } from '../utils/sozlamalar';
+import { manager, student, umumiy, ustoz } from '../utils/sozlamalar';
 import ManagerSidebar from '../component/Sozlamalar/Manager/Sidebar';
 import UstozSidebar from '../component/Sozlamalar/Ustoz/Sidebar';
+import { StudentSidebar } from '../component/Sozlamalar/Students/Sidebar';
 
 export const Root = () => {
   return (
@@ -53,6 +54,21 @@ export const Root = () => {
               );
             })}
           </Route>
+
+            {/* Sozlamalar  Student*/}
+            <Route element={<StudentSidebar/>}>
+            {student.map((item) => {
+              const { element: Element } = item;
+              return (
+                <Route
+                  key={item.id}
+                  path={`sozlamalar/student/${item.path}`}
+                  element={<Element />}
+                />
+              );
+            })}
+          </Route>
+
           {/* MAIN */}
           <Route
             //key={child.id}

@@ -18,6 +18,9 @@ import TolovlarView from "../view/Sozlamalar/Tolovlar";
 // Ustoz
 import KPIView from "../view/Sozlamalar/KPI";
 import OylikView from '../view/Sozlamalar/Oylik';
+// Student
+import StudentTolovView from "../view/Sozlamalar/StudentTolov";
+import KategoriyaView from "../view/Sozlamalar/Kategoriya";
 
 export const umumiy = [
   { id: 1, icon: Check, element: CheckView, path: "check", title: "Check" },
@@ -76,5 +79,22 @@ export const ustoz = [
     element: OylikView,
     path: "oylik",
     title: "Oylik",
+  },
+]
+
+export const student = [
+  {
+    id: 2,
+    icon: Check,
+    element: StudentTolovView,
+    path: "tolovlar",
+    title: "To'lovlar",
+  },
+  {
+    id: 3,
+    icon: filial,
+    element: KategoriyaView,
+    path: "Kategoriya",
+    title: "Kategoriya",
   },
 ]
