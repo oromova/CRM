@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Card, Wrapper, Section, Plus, Counter, Arrow, SubCard, FooterWrapper } from './style';
 import Title from '../Generics/Title';
 import Subtitle from '../Generics/Subtitle';
 import { media, privateData } from '../../utils/analitics';
 import Moliya from './Moliya';
 import Email from './Email';
+import { MentorContext } from '../../context/mentor';
 
 export const Analitika = () => {
-  const url = import.meta.env.VITE_BASE_URL;
-
-  fetch(`${url}/tabs/media`)
-  .then((res) => res.json())
-  .then((res) => console.log(res, "ressss"))
+  const [state, dispatch] = useContext(MentorContext)
+  console.log(state, 'sta');
   
   return (
     <Container>
