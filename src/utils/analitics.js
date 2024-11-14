@@ -12,25 +12,25 @@ import linkedinIcon from "../assets/icons/socialMedia/linkedin.svg?react"
 
 export const privateData = [
   {
-    id: 1,
+    id: 'students',
     title: "Talabalar",
     icon: talabalarIcon,
     img: talabalarImg,
-    count: 285,
+    count: 'students',
   },
   {
-    id: 2,
+    id: 'mentors',
     title: "Mentorlar",
     icon: mentorlarIcon,
     img: mentorlarImg,
-    count: 36,
+    count: 'mentors',
   },
   {
-    id: 3,
+    id: 'filial',
     title: "Filiallar",
     icon: filiallarIcon,
     img: filiallarImg,
-    count: 3,
+    count: 'filials',
   },
 ];
 

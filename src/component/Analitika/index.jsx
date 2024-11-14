@@ -1,16 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Container, Card, Wrapper, Section, Plus, Counter, Arrow, SubCard, FooterWrapper } from './style';
 import Title from '../Generics/Title';
 import Subtitle from '../Generics/Subtitle';
 import { media, privateData } from '../../utils/analitics';
 import Moliya from './Moliya';
 import Email from './Email';
-import { MentorContext } from '../../context/mentor';
+import { AnalyticsContext } from '../../context/analytics';
 
 export const Analitika = () => {
-  const [state, dispatch] = useContext(MentorContext)
-  console.log(state, 'sta');
-  
+  const [state, dispatch] = useContext(AnalyticsContext);
+
+  const url = import.meta.env.VITE_BASE_URL;
+
+  useEffect(() => {
+  // general
+    fetch(`${url}/tabs/analytics_page`)
+      .then((res) => res.json())
+      .then(([res]) => {
+        dispatch({ type: "get", payload: res });
+      });
+  }, []);
+    
+
   return (
     <Container>
       <Title mb={16}>Analitika</Title>
@@ -20,26 +31,26 @@ export const Analitika = () => {
           privateData.map((value) => {
             const { icon: Icon } = value;
             const { img: Img } = value;
-            return(
+            return (
               <Card key={value.id} gap={24} title={value.title}>
                 {/* TOP */}
-                <Section>
+                <Section title={value.title}>
                   <Title>
-                    <Icon className="icon"/> {value.title}
-                  </Title> 
-                  <Plus title={value.title}/>
+                    <Icon className="icon" /> {value.title}
+                  </Title>
+                  <Plus title={value.title} />
                 </Section>
-                 {/* BOTTOM */}
-                 <Section title={value.title}>
+                {/* BOTTOM */}
+                <Section title={value.title}>
                   <Title>
-                    <Arrow className="icon"/> 
-                    <Counter>{value.count}</Counter>
-                  </Title> 
-                  <Img/>
-                  <Plus/>
+                    <Arrow className="icon" />
+                    <Counter>{state[value.count]}</Counter>
+                  </Title>
+                  <Img />
+                  <Plus />
                 </Section>
               </Card>
-            )
+            );
           })
         }
       </Wrapper>
@@ -48,28 +59,28 @@ export const Analitika = () => {
       </Subtitle>
       {/* Media */}
       <Wrapper>
-      {
+        {
           media.map((value) => {
             const { icon: Icon } = value;
-            return(
+            return (
               <SubCard key={value.id} gap={24} title={value.title}>
                 {/* TOP */}
                 <Section>
                   <Subtitle>
-                    <Icon className="subicon"/> {value.title}
-                  </Subtitle> 
-                  <Plus title={value.title}/>
+                    <Icon className="subicon" /> {value.title}
+                  </Subtitle>
+                  <Plus title={value.title} />
                 </Section>
-                 {/* BOTTOM */}
-                 <Section title={value.title}>
+                {/* BOTTOM */}
+                <Section title={value.title}>
                   <Title color={"#52C41A"}>
-                    <Arrow className="icon"/>22%
-                  </Title> 
+                    <Arrow className="icon" />22%
+                  </Title>
                   <Counter>{value.count}K</Counter>
-                  <Plus/>
+                  <Plus />
                 </Section>
               </SubCard>
-            )
+            );
           })
         }
       </Wrapper>
@@ -79,7 +90,7 @@ export const Analitika = () => {
           <Subtitle mt={24} mb={16} count={12}>
             Email xabarlari
           </Subtitle>
-          <Email/>
+          <Email />
         </FooterWrapper.Email>
         {/* MOLIYA */}
         <FooterWrapper.Moliya>

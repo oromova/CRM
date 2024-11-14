@@ -1,9 +1,11 @@
-import UserContext from "./user";
-import MentorContext from "./mentor";
+import EmailsProvider from "./emails";
+import MoliyaContext from "./moliya";
+import AnalyticsProvider from "./analytics";
 
 const provider = [
-  UserContext,
-  MentorContext
+  AnalyticsProvider, 
+  EmailsProvider, 
+  MoliyaContext
 ];
 
 export const ContextProvider = ({ children }) => {
