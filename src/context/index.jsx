@@ -1,11 +1,13 @@
 import EmailsProvider from "./emails";
 import MoliyaContext from "./moliya";
 import AnalyticsProvider from "./analytics";
+import MediaProvider from "./media";
 
 const provider = [
   AnalyticsProvider, 
   EmailsProvider, 
-  MoliyaContext
+  MoliyaContext,
+  MediaProvider,
 ];
 
 export const ContextProvider = ({ children }) => {

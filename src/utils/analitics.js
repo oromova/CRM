@@ -34,35 +34,11 @@ export const privateData = [
   },
 ];
 
-export const media = [
-  {
-    id: 1,
-    title: "Instagram",
-    icon: instaIcon,
-    count: 285,
-  },
-  {
-    id: 2,
-    title: "Telegram",
-    icon: telegramIcon,
-    count: 36,
-  },
-  {
-    id: 3,
-    title: "Youtube",
-    icon: youtubeIcon,
-    count: 3,
-  },
-  {
-    id: 4,
-    title: "Linkedin",
-    icon: linkedinIcon,
-    count: 3,
-  },
-  {
-    id: 5,
-    title: "Tiktok",
-    icon: linkedinIcon,
-    count: 3,
-  },
-];
+export const mediaIcon = {
+    1: instaIcon,
+    2: telegramIcon,
+    3: youtubeIcon,
+    4: linkedinIcon,
+    5: linkedinIcon,
+  };
+
