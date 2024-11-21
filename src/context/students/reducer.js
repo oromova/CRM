@@ -1,4 +1,4 @@
-export const initialState = [];
+export const initialState = []
 
 //CRUD - GET, PUT, DELETE, POST
 export const reducer = (state, action) => {

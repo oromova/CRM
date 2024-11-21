@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import { useNavigate } from 'react-router-dom';
+import Spinner from "../Spinner";
 
 function EnhancedTableHead(props) {
   const { headCells, onSelectAllClick, checkbox, numSelected, rowCount, } =
@@ -30,15 +31,15 @@ function EnhancedTableHead(props) {
           />
         </TableCell>}
         {headCells.map((headCell) => (
-          <TableCell 
-            key={headCell.id} 
+          <TableCell
+            key={headCell.id}
             align={headCell?.align || "left"}
-            sx={{ 
-              color: "#929FAF", 
-              fontSize: "16px", 
-              cursor: "pointer" 
-              }}
-              >
+            sx={{
+              color: "#929FAF",
+              fontSize: "16px",
+              cursor: "pointer"
+            }}
+          >
             {headCell.label}
           </TableCell>
         ))}
@@ -47,9 +48,16 @@ function EnhancedTableHead(props) {
   );
 }
 
-export default function GenericTable(props) {
+export function GenericTable(props) {
   const [selected, setSelected] = React.useState([]);
-  const { headCells, rows, open, checkbox = true, url } = props;
+  const { 
+    headCells, 
+    rows, 
+    open, 
+    checkbox = true, 
+    url, 
+    spinner = false, 
+  } = props;
   const navigate = useNavigate();
 
   const handleSelectAllClick = (event) => {
@@ -99,7 +107,8 @@ export default function GenericTable(props) {
         </Table>
       </Box>
 
-      <Paper sx={{ width: '100%', mb: 2 }}>
+      <Paper sx={{ width: '100%', mb: 2, position: "relative" }}>
+        {spinner && <Spinner />}
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -153,8 +162,8 @@ export default function GenericTable(props) {
               })}
               {rows?.length < 1 && (
                 <TableRow>
-                  <TableCell 
-                    align='center' 
+                  <TableCell
+                    align='center'
                     colSpan={6}>No Data
                   </TableCell>
                 </TableRow>
@@ -167,4 +176,4 @@ export default function GenericTable(props) {
   );
 }
 
-export { GenericTable };
+export default GenericTable;

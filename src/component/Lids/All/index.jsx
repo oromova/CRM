@@ -1,82 +1,77 @@
-import React, { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { GenericTable } from '../../Generics/Table';
 import { Action, Container } from './style';
-import { Breadcrumb } from '../../Generics/BreadCrumb/index';
+import { Breadcrumb } from '../../Generics/BreadCrumb';
 import GenericButton from '../../Generics/Button';
 import GenericSelect from '../../Generics/Select';
 import AllLidsModal from './modal';
+import useFetch from "../../../hooks/useFetch"
+import { StudentsContext } from '../../../context/students'
+import { useLocation, useNavigate } from "react-router-dom"
+import GenericInput from '../../Generics/Input';
+import replace from "../../../hooks/useReplace"
+import useQuery from "../../../hooks/useQuery"
 
 export const AllLids = () => {
   const [open, setOpen] = useState(false);
   const [modalOpen, setModal] = useState(false);
   const [modalProps, setModalProps] = useState({});
+  const [state, dispatch] = useContext(StudentsContext);
+  const [spinner, setSpinner] = useState(false)
+  const query = useQuery();
+  
+  const request = useFetch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [filter, setFilter] = useState({
+    name: query.get("name") || "",
+    group: query.get("group"),
+  });
+
+  const getStudent = async () => {
+    setSpinner(true)
+    let res = await request("/tabs/students");
+    dispatch({ type: "get", payload: res })
+    setSpinner(false)
+  }
+
+  // fetch
+  useEffect (() =>{
+    getStudent();
+  }, [])
 
   const onEdit = (e, res) => {
     e.stopPropagation();
     setModal(!modalOpen);
     setModalProps(res);
   };
-  const onMove = (e) => {
+  const onMove = (e, value) => {
+    setSpinner(true)
     e.stopPropagation();
+    console.log(value);
+    request(`/tabs/students/id/*${value?.id}*`, { method: "DELETE" }).then(
+      (rs) => {
+        console.log(rs, "deleted");
+        getStudent()
+      }
+    )
   };
 
   const headCells = [
     { id: "name", label: "O'quvchining ismi", },
-    { id: "group", label: "Guruh / Fan", },
-    { id: "date", label: "Dars kuni va vaqti", },
-    { id: "addedDate", label: "Qo'shilgan sana", },
+    { id: "field", label: "Guruh / Fan", },
+    { id: "days", label: "Dars kuni va vaqti", },
+    { id: "added_date", label: "Qo'shilgan sana", },
     { id: "admin", label: "Moderator", },
     {
-      id: "action", label: "",
+      id: "action", 
+      label: "",
       render: (res) => (
         <Action>
           <Action.Edit onClick={(e) => onEdit(e, res)} />
-          <Action.Move onClick={onMove} />
+          <Action.Move onClick={(e) => onMove(e, res)} />
         </Action>
       )
-    },
-  ];
-
-  let rows = [
-    {
-      id: 1,
-      name: 'Javlon Javliyev',
-      group: "Frontend",
-      date: "21.05.2024",
-      days: "toq kunlari",
-      addedDate: "21.05.2024",
-      admin: 'Webbrain admin',
-      level: "Beginner"
-    },
-    {
-      id: 2,
-      name: 'Akobir Turdiyev',
-      group: "Frontend",
-      date: "21.05.2024",
-      days: "toq kunlari",
-      addedDate: "21.05.2024",
-      admin: 'Webbrain admin',
-      level: "Junior",
-    },
-    {
-      id: 3,
-      name: 'Oromova Yulduz',
-      group: "Frontend",
-      date: "21.05.2024",
-      days: "toq kunlari",
-      addedDate: "21.05.2024",
-      admin: 'Webbrain admin',
-      level: "Junior",
-    },
-    {
-      id: 4,
-      name: 'Safarova Nilufar',
-      group: "Frontend",
-      date: "21.05.2024",
-      days: "toq kunlari",
-      addedDate: "21.05.2024",
-      admin: 'Webbrain admin',
-      level: "Junior",
     },
   ];
 
@@ -92,7 +87,13 @@ export const AllLids = () => {
   };
 
   const onSave = () => {
+  };
 
+  const onChangeFilter = ({ target }) => {
+    const { value, name } = target;
+    setFilter({ ...filter, [name]: value });
+
+    navigate(`${location.pathname}${replace(value, name)}`);
   };
 
   return (
@@ -114,7 +115,22 @@ export const AllLids = () => {
           Lid qo'shish
         </GenericButton>
       </Breadcrumb>
-      <GenericTable open={open} headCells={headCells} rows={rows}>
+      <GenericTable 
+        open={open} 
+        headCells={headCells} 
+        rows={state} 
+        spinner={spinner}
+      >
+        <GenericInput 
+          value={filter.name}
+          name="name"
+          onChange={onChangeFilter}
+        />
+        <GenericInput 
+          value={filter.group}
+          name="group"
+          onChange={onChangeFilter}
+        />
         <GenericSelect value='uzbek' data={data1} />
         <GenericSelect value='english' data={data1} />
         <GenericSelect value='russian' data={data1} />
