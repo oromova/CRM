@@ -2,7 +2,7 @@ import { FormControl, MenuItem, Select } from '@mui/material';
 import React, { useState } from 'react';
 
 export const GenericSelect = (props) => {
-  const { data, width } = props;
+  const { data, width, onChange, name } = props;
 
   const [defaultVal, setDefaultVal] = useState(
     props?.value || (data && data[0]?.value)
@@ -10,6 +10,7 @@ export const GenericSelect = (props) => {
 
   const handleChange = (event) => {
     setDefaultVal(event.target.value);
+    onChange && onChange(event);
   };
   return (
     <FormControl
@@ -23,6 +24,7 @@ export const GenericSelect = (props) => {
       size='small'
     >
       <Select
+        name={name}
         sx={{ color: '#929FAF', border: '#929FAF', fontSize: "14px" }}
         value={defaultVal || "Select"}
         onChange={handleChange}
@@ -33,6 +35,7 @@ export const GenericSelect = (props) => {
               sx={{ color: '#929FAF', fontSize: "14px" }}
               key={item.value}
               value={item?.value}
+              defaultChecked={item?.checked}
             >
               {item?.title}
             </MenuItem>

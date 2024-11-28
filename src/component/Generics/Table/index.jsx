@@ -19,7 +19,8 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        {checkbox && <TableCell padding="checkbox">
+        {checkbox && (
+          <TableCell padding="checkbox">
           <Checkbox
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -29,16 +30,18 @@ function EnhancedTableHead(props) {
               'aria-label': 'select all desserts',
             }}
           />
-        </TableCell>}
+        </TableCell>
+      )}
         {headCells.map((headCell) => (
           <TableCell
-            key={headCell.id}
-            align={headCell?.align || "left"}
             sx={{
               color: "#929FAF",
               fontSize: "16px",
-              cursor: "pointer"
+              cursor: "pointer",
+              whiteSpace: "nowrap"
             }}
+              key={headCell.id}
+              align={headCell?.align || "left"}
           >
             {headCell.label}
           </TableCell>
@@ -58,6 +61,7 @@ export function GenericTable(props) {
     url, 
     spinner = false, 
   } = props;
+
   const navigate = useNavigate();
 
   const handleSelectAllClick = (event) => {
@@ -90,14 +94,20 @@ export function GenericTable(props) {
     } else {
       url && navigate(url, { state: { parent: "Groups", child: "Checkin" } });
     }
-
   };
 
-  // const isSelected = () => selected.indexOf(id) !== -1;
+  const isSelected = (id) => selected.indexOf(id) !== -1;
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ marginTop: "24px", height: open ? "64px" : 0, overflow: 'hidden' }}>
+      <Box 
+        sx={{ 
+          marginTop: "24px", 
+          height: open ? "64px" : 0, 
+          overflow: 'hidden',
+          border: 0, 
+        }}
+      >
         <Table>
           <TableBody>
             <TableRow sx={{ display: "flex", gap: 5 }}>
@@ -122,7 +132,7 @@ export function GenericTable(props) {
             />
             <TableBody>
               {rows.map((row, index) => {
-                const isItemSelected = selected.includes(row.id);
+                const isItemSelected = isSelected(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
@@ -136,7 +146,7 @@ export function GenericTable(props) {
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer' }}
                   >
-                    {checkbox &&
+                    {checkbox && (
                       <TableCell padding="checkbox">
                         <Checkbox
                           color="primary"
@@ -145,18 +155,18 @@ export function GenericTable(props) {
                             'aria-labelledby': labelId,
                           }}
                         />
-                      </TableCell>}
+                      </TableCell>
+                    )}
 
-                    {headCells.map((val) =>
+                    {headCells.map((val) =>(
                       <TableCell
                         align={val?.align || "left"}
                         key={val.id}
-                        sx={{ color: "#253E5F" }}>
-                        {
-                          val.render ? val?.render(row) : row[val.id]
-                        }
+                        sx={{ color: "#253E5F" }}
+                        >
+                        {val?.render ? val?.render(row) : row[val.id]}
                       </TableCell>
-                    )}
+              ))}
                   </TableRow>
                 );
               })}
@@ -164,7 +174,8 @@ export function GenericTable(props) {
                 <TableRow>
                   <TableCell
                     align='center'
-                    colSpan={6}>No Data
+                    colSpan={6}>
+                      No Data
                   </TableCell>
                 </TableRow>
               )}

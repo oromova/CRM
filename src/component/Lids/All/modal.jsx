@@ -3,38 +3,165 @@ import { Modal } from "../../Generics/Modal";
 import Subtitle from '../../Generics/Subtitle';
 import GenericSelect from "../../Generics/Select";
 import Title from '../../Generics/Title';
+import { groups } from "../../../utils/groups";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker"
+import moment from "moment"
+import { useEffect, useState } from "react";
+import useFetch from "../../../hooks/useFetch";
 
 export const AllLidsModal = (props) => {
+  const request = useFetch();
+
+  const [state, setState] = useState({
+    name: "webbrain",
+    surname: "academy",
+    group: "", 
+    added_date: `${moment().day()}/${moment().month()}/${moment().year()}`,
+    field: "", // Frontend
+    phone: "", 
+    status: false,
+    parents: "",
+    admin: "Gulchiroy",
+    type: "offline",
+    payment: 0,
+    time: "",
+  });
+
   const { data } = props;
-  const selectData = data && [
-    { value: "Frontend", title: "Frontend" },
-    { value: "Backend", title: "Backend"},
-  ];
+ 
+  useEffect(() => {
+    if (data) {
+      setState({...state, ...data});
+    }
+  }, []);
+
+  const onChangeFilter = ({ target }) => {
+    const {value, name}  = target;
+    setState({...state, [name]: value });
+  };
+
+  const onSave = () => {
+    request("/tabs/students", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {state, id: Date.now()},
+    }).then(()=> {
+      props.onClose();
+    });
+  };
 
   return (
-    <Modal {...props}>
+    <Modal {...props} onSave={onSave}>
       <Title size="34px">Lid qo'shish</Title>
-      {/* full name */}
+      {/* name */}
       <Subtitle mt={16} mb={8} color={"#929FAF"} >
-        Studentning ismi
+        Ismingiz
       </Subtitle>
-      <GenericInput color="black" fontWeight={500} width={500} value={data?.name } />
+      <GenericInput  
+        fontWeight={500} 
+        width={500} 
+        value={state?.name } 
+        name='name' 
+        onChange={onChangeFilter} 
+      />
+      {/* surname */}
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        Familyangiz
+      </Subtitle>
+      <GenericInput  
+        fontWeight={500} 
+        width={500} 
+        value={state?.name} 
+        name='surname' 
+        onChange={onChangeFilter} 
+      />
+      {/* Phone */}
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        Telefon raqamingiz
+      </Subtitle>
+      <GenericInput  
+        fontWeight={500} 
+        width={500} 
+        value={state?.phone} 
+        name='phone' 
+        onChange={onChangeFilter} 
+      />
+      {/* Parents */}
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        Otasining ismi
+      </Subtitle>
+      <GenericInput  
+        fontWeight={500} 
+        width={500} 
+        value={state?.parents} 
+        name='parents' 
+        onChange={onChangeFilter} 
+      />
       {/* yo'nalish */}
-      <Subtitle mt={16} mb={8} color={"#929FAF"}>Yo'nalishni tanlang</Subtitle>
-      <GenericSelect width={'100%'} value={data?.group}/>
-      {/* daraja */}
-      <Subtitle mt={16} mb={8} color={"#929FAF"}>Darajangizni tanlang</Subtitle>
-      <GenericSelect width={'100%'} value={data?.level}></GenericSelect>
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        Yo'nalishni tanlang
+      </Subtitle>
+      <GenericSelect 
+        data={groups} 
+        width={"100%"}
+        value={state?.group}
+        name="field"
+        onChange={onChangeFilter}
+      />
+      {/* surname */}
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        Guruh nomi
+      </Subtitle> 
+      <GenericInput  
+        fontWeight={500} 
+        width={500} 
+        value={state?.name} 
+        name='group' 
+        onChange={onChangeFilter} 
+      />
+      {/* time */}
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        Dars vaqti (12:00 - 14:00)
+      </Subtitle>
+      <GenericInput  
+        fontWeight={500} 
+        width={500} 
+        value={state?.parents} 
+        name='parents' 
+        onChange={onChangeFilter} 
+      />
       {/* Kun */}
-      <Subtitle mt={16} mb={8} color={"#929FAF"}>Kunni tanlang</Subtitle>
-      <GenericSelect width={'100%'} value={data?.days} ></GenericSelect>
-      {/* Kelish  sanasi */}
-      <Subtitle mt={16} mb={8} color={"#929FAF"}>Boshlash sanani tanlang</Subtitle>
-      <GenericSelect width={'100%'}></GenericSelect>
-      {/* izoh */}
-      <Subtitle mt={16} mb={8} color={"#929FAF"}>Izoh</Subtitle>
-      <GenericInput color="black" fontWeight={500} width={500} />
-    </Modal>
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        Kunni tanlang (kunlarni vergul bilan ajrating)
+      </Subtitle>
+      <GenericInput
+        fontWeight={500}
+        width={500}
+        value={state?.name}
+        name="days"
+        onChange={onChangeFilter}
+      />
+       {/* Kun */}
+       <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        Kun tanlang
+      </Subtitle>
+      <LocalizationProvider dateAdapter={AdapterMoment}>
+        <DatePicker
+          sx={{ width: "100%" }}
+          views={["year", "month", "day"]}
+          slotProps={{ textField: {size: "small" } }}
+          componentsProps={{
+            actionBar: {
+              actions: ["clear"],
+            },
+          }}
+        />
+      </LocalizationProvider>
+     </Modal>
   );
 };
 

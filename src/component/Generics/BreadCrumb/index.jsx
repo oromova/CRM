@@ -18,4 +18,4 @@ export const Breadcrumb = (props) => {
   ) : null;
 };
 
-export default Breadcrumb
+export default Breadcrumb;
