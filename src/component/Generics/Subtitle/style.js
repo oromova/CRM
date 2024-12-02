@@ -23,6 +23,8 @@ export const Counter = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Montserrat;
+  
   font-size: 12px;
   font-weight: 500;
   line-height: 20px;

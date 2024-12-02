@@ -4,7 +4,7 @@ export const Container = styled.div`
   position: absolute;
   inset: 0;
   background: rgba(37, 62, 95, 0.5);
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   z-index: 999;
 `
 export const Wrapper = styled.div`
@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   width: fit-content;
   border-radius: 8px;
   padding: 32px 48px;
-  /* gap: 16px; */
+  gap: 16px;
   background-color: white;
   max-height: 90%;
   gap: 16px;

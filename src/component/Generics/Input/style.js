@@ -8,9 +8,11 @@ export const Container = styled.div`
   border: 1px solid rgb(240, 240, 240);
   overflow: hidden;
   border-radius: ${({ borderRadius }) => getValue(borderRadius, "4px")};
-  width: ${({ width }) => getValue(width)};
-  height: ${({ height }) => getValue(height, "40px")};
+  width: 100%;
+  min-width: ${({ width }) => getValue(width)};
   max-width: ${({ width }) => getValue(width)};
+  height: ${({ height }) => getValue(height, "40px")};
+  box-sizing: border-box;
 `;
 
 export const Input = styled.input`

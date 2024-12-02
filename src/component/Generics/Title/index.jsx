@@ -1,12 +1,11 @@
-import React from 'react'
 import { Container } from "./style";
 
 export const Title = (props) => {
-    return (
+  return (
     <Container {...props}>
-     {props?.children}
+      {props?.children}
     </Container>
-  )
-}
+  );
+};
 
-export default Title
+export default Title;

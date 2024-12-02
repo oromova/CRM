@@ -12,7 +12,6 @@ Icons.Filter = styled(filter)`
   }
 `;
 Icons.Import = styled(imp)``;
-
 Icons.Add = styled(add)``;
 
 const Button = styled.button`
@@ -46,9 +45,21 @@ const Button = styled.button`
   user-select: none; /* Standart syntax */
 `;
 
+Button.Import = styled(Button)`
+  border: 0;
+  background-color: white;
+`;
+
+Button.Add = styled(Button)`
+  background-color: ${({ bgcolor }) => (bgcolor ? bgcolor : "rgb(24, 144, 255)")};
+  color: white;
+  border: 0;
+`;
+
 Button.Filter = styled(Button)`
   background-color: var(--primaryColor);
   color: white;
+  border: 0;
 `;
 
 Button.Primary = styled(Button)`
@@ -57,22 +68,10 @@ Button.Primary = styled(Button)`
   color: white;
 `;
 
-Button.Import = styled(Button)`
-  border: 0;
-  background-color: white;
-`;
-
 Button.Delete = styled(Button)`
   border-color: #ffa39e;
   color: #f5222d;
   border: 1px solid;
-`;
-
-Button.Add = styled(Button)`
-  background-color: ${({ bgcolor }) =>
-    bgcolor ? bgcolor : "rgb(24, 144, 255)"};
-  color: white;
-  border: 0;
 `;
 
 export { Button };

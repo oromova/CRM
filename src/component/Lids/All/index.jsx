@@ -10,7 +10,7 @@ import { StudentsContext } from '../../../context/students';
 import { useLocation, useNavigate } from 'react-router-dom';
 import GenericInput from '../../Generics/Input';
 import replace from '../../../hooks/useReplace';
-import useQuery from "../../../hooks/useQuery"
+import useQuery from "../../../hooks/useQuery";
 import { groups } from '../../../utils/groups';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
@@ -25,8 +25,8 @@ export const AllLids = () => {
   const [spinner, setSpinner] = useState(false);
   const query = useQuery();
 
-  const request = useFetch();
   const navigate = useNavigate();
+  const request = useFetch();
   const location = useLocation();
   const [filter, setFilter] = useState({
     name: query.get("name") || "",
@@ -77,13 +77,14 @@ export const AllLids = () => {
           <Action.Edit onClick={(e) => onEdit(e, res)} />
           <Action.Move onClick={(e) => onMove(e, res)} />
         </Action>
-      )
+      ),
     },
   ];
 
-  const onToggleModal = () => {
+  const onToggleModal = (callback) => {
     setModal(!modalOpen);
     setModalProps(null);
+    callback && callback();
   };
 
   const onSave = () => {
@@ -114,6 +115,7 @@ export const AllLids = () => {
         open={modalOpen}
         onClose={onToggleModal}
         onSave={onSave}
+        reload={getStudent}
       />
       <Breadcrumb>
         <GenericButton type='import' onClick={() => setOpen(!open)}>
@@ -151,7 +153,7 @@ export const AllLids = () => {
           placeholder="hafta kunlari"
         />
         <LocalizationProvider dateAdapter={AdapterMoment}>
-          <DatePicker 
+          <DatePicker
             value={moment(filter.date)}
             onChange={onSelectDate}
             views={["year", "month", "day"]}
@@ -165,11 +167,11 @@ export const AllLids = () => {
             }}
           />
         </LocalizationProvider>
-          <GenericInput 
-            value={filter.admin}
-            name="admin"
-            onChange={onChangeFilter}
-            placeholder="moderator"
+        <GenericInput
+          value={filter.admin}
+          name="admin"
+          onChange={onChangeFilter}
+          placeholder="moderator"
         />
       </GenericTable>
     </Container >

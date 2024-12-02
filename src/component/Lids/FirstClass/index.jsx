@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { GenericTable } from '../../Generics/Table';
 import { Action, Container } from './style';
-import { Breadcrumb } from '../../Generics/BreadCrumb/index';
+import { Breadcrumb } from '../../Generics/BreadCrumb';
 import GenericButton from '../../Generics/Button';
 import GenericSelect from '../../Generics/Select';
 import AllLidsModal from './modal';
@@ -33,7 +33,7 @@ export const FirstClass = () => {
           <Action.Edit onClick={(e) => onEdit(e, res)} />
           {/* <Action.Move onClick={onMove} /> */}
         </Action>
-      )
+      ),
     },
   ];
 
@@ -91,7 +91,7 @@ export const FirstClass = () => {
     setModalProps(null);
   };
 
-  const onSave = () => {};
+  const onSave = () => { };
 
   return (
     <Container>
@@ -110,17 +110,17 @@ export const FirstClass = () => {
         </GenericButton>
       </Breadcrumb>
       <GenericTable open={open} headCells={headCells} rows={rows}>
-      <LocalizationProvider dateAdapter={AdapterMoment}>
-        <DatePicker
-        defaultValue={moment()}
-        views={["year", "month", "day"]}
-        slotProps={{ textField: {size: "small"} }}
-        />
-      </LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <DatePicker
+            defaultValue={moment()}
+            views={["year", "month", "day"]}
+            slotProps={{ textField: { size: "small" } }}
+          />
+        </LocalizationProvider>
         <GenericSelect data={data1} />
         <GenericSelect data={data1} />
       </GenericTable>
-    </Container >
+    </Container>
   );
 };
 

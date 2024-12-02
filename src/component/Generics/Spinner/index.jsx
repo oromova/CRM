@@ -3,19 +3,15 @@ import { Container } from "./style";
 import { createPortal } from "react-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 
-const portal = document.getElementById('modal');
-
 export const Spinner = () => {
-//   return (
-//   //   createPortal(
-//   //   <Container>
-//   //     <Box>
-//   //       <CircularProgress color="success" />
-//   //     </Box>
-//   //   </Container>,
-//   //   portal
-//   // )
-// );
+  return createPortal(
+    <Container>
+      <Box>
+        <CircularProgress color="success" />
+      </Box>
+    </Container>,
+    document.body
+  );
 };
 
 export default Spinner;

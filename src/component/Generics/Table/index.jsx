@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -13,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import Spinner from "../Spinner";
 
 function EnhancedTableHead(props) {
-  const { headCells, onSelectAllClick, checkbox, numSelected, rowCount, } =
+  const { onSelectAllClick, numSelected, rowCount, headCells, checkbox } =
     props;
 
   return (
@@ -21,27 +20,27 @@ function EnhancedTableHead(props) {
       <TableRow>
         {checkbox && (
           <TableCell padding="checkbox">
-          <Checkbox
-            color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              'aria-label': 'select all desserts',
-            }}
-          />
-        </TableCell>
-      )}
+            <Checkbox
+              color="primary"
+              indeterminate={numSelected > 0 && numSelected < rowCount}
+              checked={rowCount > 0 && numSelected === rowCount}
+              onChange={onSelectAllClick}
+              inputProps={{
+                'aria-label': 'select all desserts',
+              }}
+            />
+          </TableCell>
+        )}
         {headCells.map((headCell) => (
           <TableCell
             sx={{
               color: "#929FAF",
               fontSize: "16px",
               cursor: "pointer",
-              whiteSpace: "nowrap"
+              whiteSpace: "nowrap",
             }}
-              key={headCell.id}
-              align={headCell?.align || "left"}
+            key={headCell.id}
+            align={headCell?.align || "left"}
           >
             {headCell.label}
           </TableCell>
@@ -53,13 +52,13 @@ function EnhancedTableHead(props) {
 
 export function GenericTable(props) {
   const [selected, setSelected] = React.useState([]);
-  const { 
-    headCells, 
-    rows, 
-    open, 
-    checkbox = true, 
-    url, 
-    spinner = false, 
+  const {
+    headCells,
+    rows,
+    open,
+    checkbox = true,
+    url,
+    spinner = false,
   } = props;
 
   const navigate = useNavigate();
@@ -100,12 +99,12 @@ export function GenericTable(props) {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box 
-        sx={{ 
-          marginTop: "24px", 
-          height: open ? "64px" : 0, 
+      <Box
+        sx={{
+          marginTop: "24px",
+          height: open ? "64px" : 0,
           overflow: 'hidden',
-          border: 0, 
+          border: 0,
         }}
       >
         <Table>
@@ -158,15 +157,15 @@ export function GenericTable(props) {
                       </TableCell>
                     )}
 
-                    {headCells.map((val) =>(
+                    {headCells.map((val) => (
                       <TableCell
                         align={val?.align || "left"}
                         key={val.id}
                         sx={{ color: "#253E5F" }}
-                        >
+                      >
                         {val?.render ? val?.render(row) : row[val.id]}
                       </TableCell>
-              ))}
+                    ))}
                   </TableRow>
                 );
               })}
@@ -175,7 +174,7 @@ export function GenericTable(props) {
                   <TableCell
                     align='center'
                     colSpan={6}>
-                      No Data
+                    No Data
                   </TableCell>
                 </TableRow>
               )}
