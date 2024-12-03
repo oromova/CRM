@@ -62,7 +62,7 @@ export const AllLidsModal = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: { state, id: Date.now() },
+        body: { ...state, id: Date.now() },
       }).then(() => {
         props.onClose(setState(initialState));
       });
