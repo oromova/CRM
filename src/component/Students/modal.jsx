@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unescaped-entities */
-import { Modal } from "../../Generics/Modal";
-import GenericInput from "../../Generics/Input";
-import Subtitle from "../../Generics/Subtitle";
-import GenericSelect from "../../Generics/Select";
-import Title from "../../Generics/Title";
-import { groups } from "../../../utils/groups";
+import { Modal } from "../Generics/Modal";
+import GenericInput from "../Generics/Input";
+import Subtitle from "../Generics/Subtitle";
+import GenericSelect from "../Generics/Select";
+import Title from "../Generics/Title";
+import { groups } from "../../utils/groups";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import useFetch from "../../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 
 const initialState = {
   name: "",
@@ -28,7 +28,7 @@ const initialState = {
   payment: 0,
   time: "",
 };
-export const AllLidsModal = (props) => {
+export const AllStudentModal = (props) => {
   const request = useFetch();
 
   const [state, setState] = useState(initialState);
@@ -47,28 +47,17 @@ export const AllLidsModal = (props) => {
   };
 
   const onSave = () => {
-    // edit
-    if (data?.id) {
-      request(`/tabs/students/id/${data.id}`, {
-        method: "PATCH",
-        body: state,
-      }).then(() => {
-        props.reload();
-        onClose(setState(initialState));
-      });
-    }
-    // add
-    else
-      request("/tabs/students", {
-        method: "POST",
-        body: { ...state, id: Date.now() },
-      }).then(() => {
-        props.onClose(setState(initialState));
-      });
+    request(`/tabs/students/id/${data.id}`, {
+      method: "PATCH",
+      body: state,
+    }).then(() => {
+      props.reload();
+      props?.onClose(setState(initialState));
+    });
   };
 
   const onClose = () => {
-    props?.onClose(setState(initialState));
+    props?.onClose();
   };
 
   return (
@@ -186,4 +175,4 @@ export const AllLidsModal = (props) => {
   );
 };
 
-export default AllLidsModal;
+export default AllStudentModal;

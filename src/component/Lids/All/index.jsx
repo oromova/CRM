@@ -178,3 +178,4 @@ export const AllLids = () => {
   );
 };
 
+export default AllLids;
