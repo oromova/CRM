@@ -7,7 +7,7 @@ import GenericButton from '../../Generics/Button';
 import AllLidsModal from './modal';
 
 export const Groups = () => {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
   const [modalOpen, setModal] = useState(false);
   const [modalProps, setModalProps] = useState({});
 
