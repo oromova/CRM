@@ -1,110 +1,76 @@
-import React, { useState } from 'react';
-import { GenericTable } from '../../Generics/Table';
-import { Action, Container } from './style';
-import { Breadcrumb } from '../../Generics/BreadCrumb/index';
-import GenericButton from '../../Generics/Button';
-// import GenericSelect from '../../Generics/Select';
-import AllLidsModal from './modal';
+/* eslint-disable react/no-unescaped-entities */
+import { useEffect, useState } from "react";
+import { GenericTable } from "../../Generics/Table";
+import { Action, Container } from "./style";
+import { Breadcrumb } from "../../Generics/BreadCrumb";
+import GenericButton from "../../Generics/Button";
+import AllLidsModal from "./modal";
+import useFetch from "../../../hooks/useFetch";
 
 export const Groups = () => {
-  // const [open, setOpen] = useState(false);
+  const [state, dispatch] = useState([]);
+
   const [modalOpen, setModal] = useState(false);
   const [modalProps, setModalProps] = useState({});
+  const [spinner, setSpinner] = useState(false);
+  const request = useFetch();
 
   const onEdit = (e, res) => {
     e.stopPropagation();
     setModal(!modalOpen);
     setModalProps(res);
   };
-  // const onMove = (e) => {
-  //   e.stopPropagation();
-  // };
+
+  const getData = async () => {
+    setSpinner(true);
+    let res = await request(`/tabs/groups`);
+    dispatch(res);
+    setSpinner(false);
+  };
+  // fetch
+  useEffect(() => {
+    getData();
+  }, []);
+  const onMove = (e, value) => {
+    setSpinner(true);
+    e.stopPropagation();
+    request(`/tabs/groups/id/*${value?.id}*`, { method: "DELETE" }).then(() => {
+      getData();
+    });
+  };
 
   const headCells = [
-    { id: "group", label: "Guruh / Fan", },
-    { id: "kurs", label: "Kurs", },
-    { id: "level", label: "Level", },
-    { id: "start", label: "Boshlanish", },
-    { id: "end", label: "Tugashi", },
-    { id: "turi", label: "Turi", },
+    { id: "title", label: "Guruh / Fan" },
+    { id: "field", label: "Kurs" },
+    { id: "level", label: "Level" },
+    { id: "start_time", label: "Boshlanish" },
+    { id: "end_time", label: "Tugash" },
+    { id: "type", label: "Turi" },
     {
-      id: "completed", 
+      id: "completed",
       label: "Status",
-      render: (res) => 
-      <span>
-        {res.completed ? "Completed" : "Active"}
-      </span>,
+      render: (res) => <span>{res.completed ? "Completed" : "Active"}</span>,
     },
     {
-      id: "action", label: "",
+      id: "action",
+      label: "",
       render: (res) => (
         <Action>
           <Action.Edit onClick={(e) => onEdit(e, res)} />
+          <Action.Delete onClick={(e) => onMove(e, res)} />
           {/* <Action.Move onClick={onMove} /> */}
-           <Action.Delete onClick={() => {}} /> 
         </Action>
       ),
     },
   ];
 
-  let rows = [
-    {
-      id: 1,
-      group: "Frontend",
-      kurs: "Javascript",
-      start: "13:00",
-      end: "15:00",
-      turi: 'Offline',
-      level: "Beginner",
-      completed: false,
-    },
-    {
-      id: 2,
-      group: "Frontend",
-      kurs: "Javascript",
-      start: "13:00",
-      end: "15:00",
-      turi: 'Offline',
-      level: "Beginner",
-      completed: false,
-    },
-    {
-      id: 3,
-      group: "Frontend",
-      kurs: "Javascript",
-      start: "13:00",
-      end: "15:00",
-      turi: 'Offline',
-      level: "Beginner",
-      completed: false,
-    },
-    {
-      id: 4,
-      group: "Frontend",
-      kurs: "Javascript",
-      start: "13:00",
-      end: "15:00",
-      turi: 'Offline',
-      level: "Beginner",
-      completed: false,
-    },
-  ];
-
-  // const data1 = [
-  //   { value: 'uzbek', title: 'Uzbek' },
-  //   { value: 'russian', title: 'Russian' },
-  //   { value: 'english', title: 'English' }
-  // ];
-
   const onToggleModal = () => {
     setModal(!modalOpen);
     setModalProps(null);
   };
-
   const onSave = () => {
-
+    // setModal(!modalOpen);
   };
-
   return (
     <Container>
       <AllLidsModal
@@ -112,23 +78,22 @@ export const Groups = () => {
         open={modalOpen}
         onClose={onToggleModal}
         onSave={onSave}
+        reload={getData}
       />
       <Breadcrumb>
-        <GenericButton type='add' onClick={() => onToggleModal()}>
+        <GenericButton type="add" onClick={() => onToggleModal()}>
           Guruh qo'shish
         </GenericButton>
       </Breadcrumb>
-      <GenericTable 
-        //open={open} 
-        headCells={headCells} 
-        rows={rows}
+      <GenericTable
+        // open={open}
+        headCells={headCells}
+        rows={state}
         checkbox={false}
-        url="/guruhlar/groups/checkin"
-        >
-        {/* <GenericSelect data={data1} />
-        <GenericSelect data={data1} /> */}
-      </GenericTable>
-    </Container >
+        url="/guruhlar/guruhlar/checkin"
+        spinner={spinner}
+      ></GenericTable>
+    </Container>
   );
 };
 
