@@ -1,14 +1,16 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/no-unescaped-entities */
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GenericTable } from "../../Generics/Table";
 import { Action, Container } from "./style";
 import { Breadcrumb } from "../../Generics/BreadCrumb";
 import GenericButton from "../../Generics/Button";
 import AllLidsModal from "./modal";
 import useFetch from "../../../hooks/useFetch";
+import { GroupsContext } from "../../../context/groups";
 
-export const Groups = () => {
-  const [state, dispatch] = useState([]);
+export const Guruhlar = () => {
+  const [state, dispatch] = useContext(GroupsContext);
 
   const [modalOpen, setModal] = useState(false);
   const [modalProps, setModalProps] = useState({});
@@ -24,7 +26,7 @@ export const Groups = () => {
   const getData = async () => {
     setSpinner(true);
     let res = await request(`/tabs/groups`);
-    dispatch(res);
+    dispatch({ type: "get", payload: res });
     setSpinner(false);
   };
   // fetch
@@ -97,4 +99,4 @@ export const Groups = () => {
   );
 };
 
-export default Groups;
+export default Guruhlar;

@@ -1,27 +1,26 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import { useState, useEffect } from "react";
 import StatusModal from "./StatusModal";
 import { Icon } from "./style";
 
 export const Status = ({ value }) => {
   switch (value) {
     case "keldi":
-      return <Icon.Keldi />
+      return <Icon.Keldi />;
     case "sababli":
       return <Icon.Sababli />;
     case "sababsiz":
       return <Icon.Sababsiz />;
     case "birinchi":
       return <Icon.Birinchi />;
-    default: 
-      return 'value';
+    default:
+      return "-";
   }
 };
 
 const StatusWrapper = ({ value }) => {
   const [open, setOpen] = useState(false);
   const [align, setAlign] = useState({ x: 0, y: 0 });
-
-  // const onClickStatus = () => { };
 
   useEffect(() => {
     document.addEventListener("mousedown", () => {

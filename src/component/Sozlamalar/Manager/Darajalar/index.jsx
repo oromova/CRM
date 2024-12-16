@@ -1,16 +1,20 @@
-import { useState } from 'react';
-import { Container } from './style';
-import GenericTable from '../../../Generics/Table';
-import { Breadcrumb } from '../../BreadCrumb';
-import { DarajalarModal } from './modal';
-import GenericButton from '../../../Generics/Button';
+/* eslint-disable react/no-unescaped-entities */
+ 
+import { useState } from "react";
+import { Container } from "./style";
+import GenericTable from "../../../Generics/Table";
+import { Breadcrumb } from "../../BreadCrumb";
+import DarajalarModal from "./modal";
+import GenericButton from "../../../Generics/Button";
 
 export const Darajalar = () => {
   const [open, setOpen] = useState(false);
-
-  const onClose = () => { setOpen(false) };
-  const onSave = () => { setOpen(false) };
-
+  const onClose = () => {
+    setOpen(false);
+  };
+  const onSave = () => {
+    setOpen(false);
+  };
 
   const rows = [
     {
@@ -27,36 +31,35 @@ export const Darajalar = () => {
     },
     {
       id: 3,
-      lavozim: "Manager",
+      lavozim: "Adminstration",
       yarim: "5,000,000 so'm",
       bir: "10,000,000 so'm",
     },
   ];
-
   const cells = [
     { id: "lavozim", label: "Lavozim" },
     {
       id: "yarim",
-      label: "Yarim stavka",
+      label: "Yarim Stavka",
     },
     {
       id: "bir",
       label: "Bir stavka",
     },
   ];
-
   return (
     <Container>
       <DarajalarModal open={open} onClose={onClose} onSave={onSave} />
       <Breadcrumb>
-        <GenericButton onClick={() => setOpen(true)} type="add">Daraja qo'shish</GenericButton>
+        <GenericButton onClick={() => setOpen(true)} type="add">
+          Daraja qo'shish
+        </GenericButton>
       </Breadcrumb>
       <GenericTable
         checkbox={false}
-        open={open}
         headCells={cells}
-        rows={rows}>
-      </GenericTable>
+        rows={rows}
+      ></GenericTable>
     </Container>
   );
 };

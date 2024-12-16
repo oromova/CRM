@@ -1,14 +1,15 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import { useNavigate } from 'react-router-dom';
+/* eslint-disable react/prop-types */
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import Checkbox from "@mui/material/Checkbox";
+import { useNavigate } from "react-router-dom";
 import Spinner from "../Spinner";
 
 function EnhancedTableHead(props) {
@@ -26,7 +27,7 @@ function EnhancedTableHead(props) {
               checked={rowCount > 0 && numSelected === rowCount}
               onChange={onSelectAllClick}
               inputProps={{
-                'aria-label': 'select all desserts',
+                "aria-label": "select all desserts",
               }}
             />
           </TableCell>
@@ -39,8 +40,8 @@ function EnhancedTableHead(props) {
               cursor: "pointer",
               whiteSpace: "nowrap",
             }}
-            key={headCell.id}
             align={headCell?.align || "left"}
+            key={headCell.id}
           >
             {headCell.label}
           </TableCell>
@@ -60,7 +61,6 @@ export function GenericTable(props) {
     url,
     spinner = false,
   } = props;
-
   const navigate = useNavigate();
 
   const handleSelectAllClick = (event) => {
@@ -72,13 +72,13 @@ export function GenericTable(props) {
     setSelected([]);
   };
 
-  const handleClick = (event, id) => {
+  const handleClick = (event, row) => {
     if (checkbox) {
-      const selectedIndex = selected.indexOf(id);
+      const selectedIndex = selected.indexOf(row.id);
       let newSelected = [];
 
       if (selectedIndex === -1) {
-        newSelected = newSelected.concat(selected, id);
+        newSelected = newSelected.concat(selected, row.id);
       } else if (selectedIndex === 0) {
         newSelected = newSelected.concat(selected.slice(1));
       } else if (selectedIndex === selected.length - 1) {
@@ -86,24 +86,27 @@ export function GenericTable(props) {
       } else if (selectedIndex > 0) {
         newSelected = newSelected.concat(
           selected.slice(0, selectedIndex),
-          selected.slice(selectedIndex + 1),
+          selected.slice(selectedIndex + 1)
         );
       }
       setSelected(newSelected);
     } else {
-      url && navigate(url, { state: { parent: "Groups", child: "Checkin" } });
+      url &&
+        navigate(`${url}/${row?.title.toLowerCase()}`, {
+          state: { parent: "Guruhlar", child: "Checkin" },
+        });
     }
   };
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: "100%" }}>
       <Box
         sx={{
           marginTop: "24px",
           height: open ? "64px" : 0,
-          overflow: 'hidden',
+          overflow: "hidden",
           border: 0,
         }}
       >
@@ -116,12 +119,10 @@ export function GenericTable(props) {
         </Table>
       </Box>
 
-      <Paper sx={{ width: '100%', mb: 2, position: "relative" }}>
+      <Paper sx={{ width: "100%", mb: 2, position: "relative" }}>
         {spinner && <Spinner />}
         <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle">
+          <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
             <EnhancedTableHead
               numSelected={selected.length}
               onSelectAllClick={handleSelectAllClick}
@@ -130,20 +131,20 @@ export function GenericTable(props) {
               checkbox={checkbox}
             />
             <TableBody>
-              {rows.map((row, index) => {
+              {rows.map((row, index) => {                
                 const isItemSelected = isSelected(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.id)}
+                    onClick={(event) => handleClick(event, row)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
                     key={row.id}
                     selected={isItemSelected}
-                    sx={{ cursor: 'pointer' }}
+                    sx={{ cursor: "pointer" }}
                   >
                     {checkbox && (
                       <TableCell padding="checkbox">
@@ -151,7 +152,7 @@ export function GenericTable(props) {
                           color="primary"
                           checked={isItemSelected}
                           inputProps={{
-                            'aria-labelledby': labelId,
+                            "aria-labelledby": labelId,
                           }}
                         />
                       </TableCell>
@@ -171,9 +172,7 @@ export function GenericTable(props) {
               })}
               {rows?.length < 1 && (
                 <TableRow>
-                  <TableCell
-                    align='center'
-                    colSpan={6}>
+                  <TableCell align="center" colSpan={6}>
                     No Data
                   </TableCell>
                 </TableRow>
@@ -182,7 +181,7 @@ export function GenericTable(props) {
           </Table>
         </TableContainer>
       </Paper>
-    </Box >
+    </Box>
   );
 }
 

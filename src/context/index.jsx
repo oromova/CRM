@@ -3,6 +3,7 @@ import MoliyaContext from "./moliya";
 import AnalyticsProvider from "./analytics";
 import MediaProvider from "./media";
 import StudentsProvider from './students'
+import GroupsProvider from "./groups";
 
 const provider = [
   AnalyticsProvider, 
@@ -10,6 +11,7 @@ const provider = [
   MoliyaContext,
   MediaProvider,
   StudentsProvider,
+  GroupsProvider,
 ];
 
 export const ContextProvider = ({ children }) => {
