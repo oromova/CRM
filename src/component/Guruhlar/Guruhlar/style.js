@@ -40,7 +40,7 @@ Action.Delete = styled(del)`
 export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   border: 1px solid #f0f0f0;
   width: 200px;
   height: 200px;
