@@ -3,39 +3,146 @@ import { Modal } from "../../Generics/Modal";
 import Subtitle from '../../Generics/Subtitle';
 import GenericSelect from "../../Generics/Select";
 import Title from '../../Generics/Title';
+import { useEffect, useState } from "react";
+import useFetch from "../../../hooks/useFetch";
 
-export const AllLidsModal = (props) => {
+
+const initialState = {
+  name: "",
+  capacity: "0",
+  free_times: "",
+  wifi: "FALSE",
+  monitor: "FALSE",
+  white_board: "FALSE",
+  status: "FALSE",
+};
+
+export const RoomsModal = (props) => {
+  const [state, setState] = useState(initialState);
+  const request = useFetch();
+
   const { data } = props;
-  const selectData = data && [
-    { value: "Frontend", title: "Frontend" },
-    { value: "Backend", title: "Backend"},
+  const status = [
+    { value: "TRUE", title: "TRUE" },
+    { value: "FALSE", title: "FALSE" },
   ];
 
+  useEffect(() => {
+    if (data) {
+      setState({ ...state, ...data });
+    }
+  }, [data]);
+
+  const onChangeFilter = ({ target }) => {
+    const { value, name } = target;
+    setState({ ...state, [name]: value });
+  };
+
+  const onSave = () => {
+    // edit
+    if (data?.id) {
+      request(`/tabs/rooms/id/${data.id}`, {
+        method: "PATCH",
+        body: state,
+      }).then(() => {
+        props.reload();
+        props?.onClose(setState(initialState));
+      });
+    }
+    // add
+    else
+      request("/tabs/rooms", {
+        method: "POST",
+        body: { ...state, id: Date.now() },
+      }).then(() => {
+        props.reload();
+        props?.onClose(setState(initialState));
+      });
+  };
+
   return (
-    <Modal {...props}>
+    <Modal {...props} onSave={onSave}>
       <Title size="34px">Lid qo'shish</Title>
       {/* full name */}
       <Subtitle mt={16} mb={8} color={"#929FAF"} >
-        Studentning ismi
+        Xonaning nomi
       </Subtitle>
-      <GenericInput color="black" fontWeight={500} width={500} value={data?.name } />
-      {/* yo'nalish */}
-      <Subtitle mt={16} mb={8} color={"#929FAF"}>Yo'nalishni tanlang</Subtitle>
-      <GenericSelect width={'100%'} value={data?.group}/>
-      {/* daraja */}
-      <Subtitle mt={16} mb={8} color={"#929FAF"}>Darajangizni tanlang</Subtitle>
-      <GenericSelect width={'100%'} value={data?.level}></GenericSelect>
-      {/* Kun */}
-      <Subtitle mt={16} mb={8} color={"#929FAF"}>Kunni tanlang</Subtitle>
-      <GenericSelect width={'100%'} value={data?.days} ></GenericSelect>
-      {/* Kelish  sanasi */}
-      <Subtitle mt={16} mb={8} color={"#929FAF"}>Boshlash sanani tanlang</Subtitle>
-      <GenericSelect width={'100%'}></GenericSelect>
-      {/* izoh */}
-      <Subtitle mt={16} mb={8} color={"#929FAF"}>Izoh</Subtitle>
-      <GenericInput color="black" fontWeight={500} width={500} />
+      <GenericInput
+        color="black"
+        fontWeight={500}
+        width={500}
+        value={state?.name}
+        name="name"
+        onChange={onChangeFilter}
+      />
+      {/* capasity */}
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        Xonaning sig'imi
+      </Subtitle>
+      <GenericInput
+        fontWeight={500}
+        width={500}
+        value={state?.capacity}
+        name="capacity"
+        onChange={onChangeFilter}
+      />
+      {/* free times */}
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        Bo'sh vaqtlar
+      </Subtitle>
+      <GenericInput
+        fontWeight={500}
+        width={500}
+        value={state?.free_times}
+        name="free_times"
+        onChange={onChangeFilter}
+      />
+
+      {/* Wifi */}
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        WI-FI
+      </Subtitle>
+      <GenericSelect
+        data={status}
+        width={'100%'}
+        value={state?.wifi}
+        name="wifi"
+      />
+      {/* Monitor */}
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        Monitor
+      </Subtitle>
+      <GenericSelect
+        data={status}
+        width={'100%'}
+        value={state?.monitor}
+        name="monitor"
+        onChange={onChangeFilter}
+      />
+      {/* Whiteboard */}
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        White Boards
+      </Subtitle>
+      <GenericSelect
+        data={status}
+        width={'100%'}
+        value={state?.white_board}
+        name="white_board"
+        onChange={onChangeFilter}
+      />
+      {/* Status */}
+      <Subtitle mt={16} mb={8} color={"#929FAF"}>
+        Status
+      </Subtitle>
+      <GenericSelect
+        data={status}
+        width={'100%'}
+        value={state?.status}
+        name="status"
+        onChange={onChangeFilter}
+      />
     </Modal>
   );
 };
 
-export default AllLidsModal;
+export default RoomsModal;

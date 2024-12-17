@@ -1,35 +1,36 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GenericTable } from '../../Generics/Table';
 import { Action, Container } from './style';
 import { Breadcrumb } from '../../Generics/BreadCrumb/index';
 import GenericButton from '../../Generics/Button';
-//import GenericSelect from '../../Generics/Select';
-import AllLidsModal from './modal';
+import RoomsModal from './modal';
+import useFetch from '../../../hooks/useFetch';
 
-export const AllStudents = () => {
+
+export const Rooms = () => {
+  const [state, dispatch] = useState([]);
   const [open, setOpen] = useState(false);
   const [modalOpen, setModal] = useState(false);
   const [modalProps, setModalProps] = useState({});
+  const request = useFetch();
+  const [spinner, setSpinner] = useState(false);
 
   const onEdit = (e, res) => {
     e.stopPropagation();
     setModal(!modalOpen);
     setModalProps(res);
   };
-  const onMove = (e) => {
-    e.stopPropagation();
-  };
 
   const headCells = [
-    { id: "rooms", label: "Xona", },
-    { id: "capcity", label: "O'rinlar soni", },
+    { id: "name", label: "Xona", },
+    { id: "capacity", label: "O'rinlar soni", },
     {
-      id: "freetime",
+      id: "free_times",
       label: "Bo'sh vaqti",
-      render: ({ freetime }) => {
+      render: ({ free_times }) => {
         return (
           <span>
-            {freetime.map((val) => (
+            {free_times?.split(',')?.map((val) => (
               <span
                 style={{
                   background: "whitesmoke",
@@ -43,72 +44,23 @@ export const AllStudents = () => {
               </span>
             ))}
           </span>
-        )
+        );
       },
     },
     { id: "wifi", label: "WI-FI", },
     { id: "monitor", label: "Monitor", },
-    { id: "blackboard", label: "Blackboard", },
+    { id: "white_board", label: "Blackboard", },
     { id: 'status', label: "Status" },
     {
       id: "action", label: "",
       render: (res) => (
         <Action>
           <Action.Edit onClick={(e) => onEdit(e, res)} />
-          <Action.Move onClick={onMove} />
+          <Action.Move onClick={(e) => onMove(e, res)} />
         </Action>
       ),
     },
   ];
-
-  let rows = [
-    {
-      id: 1,
-      rooms: "Frontend Team",
-      capcity: 10,
-      freetime: ['14:00 ~ 21:00', '21:00'],
-      wifi: "bor",
-      monitor: "bor",
-      blackboard: "yo'q",
-      status: "Ishlayapti",
-    },
-    {
-      id: 2,
-      rooms: "Frontend Team",
-      capcity: 20,
-      freetime: ['11:00 ~ 21:00', '21:00'],
-      wifi: "yo'q",
-      monitor: "bor",
-      blackboard: "yo'q",
-      status: "Remontda",
-    },
-    {
-      id: 3,
-      rooms: "Backend Team",
-      capcity: 20,
-      freetime: ['14: 00 ~ 21:00', '21:00'],
-      wifi: "bor",
-      monitor: "bor",
-      blackboard: "yo'q",
-      status: "Ishlayapti",
-    },
-    {
-      id: 4,
-      rooms: "Mobile Team",
-      capcity: 20,
-      freetime: ['11:00 ~ 21:00', '21:00'],
-      wifi: "yo'q",
-      monitor: "bor",
-      blackboard: "bor",
-      status: "Remontda",
-    },
-  ];
-
-  // const data1 = [
-  //   { value: 'uzbek', title: 'Uzbek' },
-  //   { value: 'russian', title: 'Russian' },
-  //   { value: 'english', title: 'English' }
-  // ];
 
   const onToggleModal = () => {
     setModal(!modalOpen);
@@ -119,37 +71,48 @@ export const AllStudents = () => {
 
   };
 
+  const getData = async () => {
+    setSpinner(true);
+    let res = await request(`/tabs/rooms`);
+    dispatch(res);
+    setSpinner(false);
+  };
+  // fetch
+  useEffect(() => {
+    getData();
+  }, []);
+  const onMove = (e, value) => {
+    setSpinner(true);
+    e.stopPropagation();
+    request(`/tabs/rooms/id/*${value?.id}*`, { method: "DELETE" }).then(() => {
+      getData();
+    });
+  };
+
   return (
     <Container>
-      <AllLidsModal
+      <RoomsModal
         data={modalProps}
         open={modalOpen}
         onClose={onToggleModal}
         onSave={onSave}
+        reload={getData}
       />
       <Breadcrumb>
-        {/* <GenericButton type='filter' onClick={() => setOpen(!open)}>
-          Filter
-        </GenericButton> */}
+
         <GenericButton type='primary' onClick={onToggleModal}>
           Xona qo'shish
         </GenericButton>
       </Breadcrumb>
-      <GenericTable 
-        // open={open} 
-        headCells={headCells} 
-        rows={rows}
+      <GenericTable
+        headCells={headCells}
+        rows={state}
         checkbox={false}
-        >
-        {/* <GenericSelect value='uzbek' data={data1} />
-        <GenericSelect value='english' data={data1} />
-        <GenericSelect value='russian' data={data1} />
-        <GenericSelect data={data1} />
-        <GenericSelect data={data1} />
-        <GenericSelect data={data1} /> */}
+        spinner={spinner}
+      >
       </GenericTable>
     </Container >
   );
 };
 
-export default AllStudents;
+export default Rooms;
